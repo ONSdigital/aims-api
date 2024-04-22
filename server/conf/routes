@@ -1,0 +1,1584 @@
+### NoDocs ###
+GET     /                   uk.gov.ons.addressIndex.server.controllers.general.ApplicationController.index()
+
+###
+#  summary: Search for an address.
+#  description: Returns a ranked list of addresses matching the search query in the specified format.
+#  parameters:
+#    - name: input
+#      schema:
+#         type: string
+#      description: Specifies the address search string (e.g. 14 Acacia Avenue, Ruislip, HA4 8RG). Can only be blank if rangekm, lat, lon and classificationfilter are supplied in which case the underlyingScore returned is the distance in km.
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 250
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 10
+#         maximum: 100
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial or workplace
+#    - name: rangekm
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Limit results to those within this number of kilometers of point (decimal e.g. 0.1)
+#    - name: lat
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Latitude of point in decimal format (e.g. 50.705948).
+#    - name: lon
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Longitude of point in decimal format (e.g. -3.5091076).
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: matchthreshold
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 5.0
+#      description: Minimum confidence score (percentage) for match to be included in results.
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in England
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Northern Ireland
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Scotland
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Wales
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Channel Islands
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Isle of Man
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses outside country boundaries
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressBySearchResponseContainerIDS"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+#
+###
+GET     /addresses/ids          uk.gov.ons.addressIndex.server.controllers.IDSAddressController.addressQueryIDS(input, offset: Option[String], limit: Option[String], classificationfilter: Option[String], rangekm: Option[String], lat: Option[String], lon: Option[String], historical: Option[String], matchthreshold: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
+
+###
+#  summary: Search for an address.
+#  description: Returns a ranked list of addresses matching the search query in the specified format.
+#  parameters:
+#    - name: input
+#      schema:
+#         type: string
+#      description: Specifies the address search string (e.g. 14 Acacia Avenue, Ruislip, HA4 8RG). Can only be blank if rangekm, lat, lon and classificationfilter are supplied in which case the underlyingScore returned is the distance in km.
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 250
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 10
+#         maximum: 100
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial or workplace
+#    - name: rangekm
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Limit results to those within this number of kilometers of point (decimal e.g. 0.1)
+#    - name: lat
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Latitude of point in decimal format (e.g. 50.705948).
+#    - name: lon
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Longitude of point in decimal format (e.g. -3.5091076).
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: matchthreshold
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 5.0
+#      description: Minimum confidence score (percentage) for match to be included in results.
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in England
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Northern Ireland
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Scotland
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Wales
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Channel Islands
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Isle of Man
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses outside country boundaries
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressBySearchResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+#
+###
+GET     /addresses          uk.gov.ons.addressIndex.server.controllers.AddressController.addressQuery(input, offset: Option[String], limit: Option[String], classificationfilter: Option[String], rangekm: Option[String], lat: Option[String], lon: Option[String], historical: Option[String], matchthreshold: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], pafdefault: Option[String])
+
+###
+#  summary: Return a list of codelists supported by the API
+#  description: Discovery call which names the available codelists for further calls
+#  responses:
+#    200:
+#      description: Success. A json return of available codelists.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.codelists.AddressResponseCodelistListContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /codelists             uk.gov.ons.addressIndex.server.controllers.CodelistController.codeList()
+
+
+###
+#  summary: Return a list of available external source codes
+#  description: List of valid source codes and names (e.g. council tax)
+#  responses:
+#    200:
+#      description: Success. A json return of external source codes.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressResponseSourceListContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /sources             uk.gov.ons.addressIndex.server.controllers.CodelistController.codeListSource()
+
+###
+#  summary: Return a list of available classification codes
+#  description: List of classifications e.g. RD01=Detached House
+#  responses:
+#    200:
+#      description: Success. A json return of available classification codes.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressResponseClassificationListContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /classifications     uk.gov.ons.addressIndex.server.controllers.CodelistController.codeListClassification()
+
+###
+#  summary: Return a list of available local custodian codes
+#  description: List of addressbase custodian codes to LA matches
+#  responses:
+#    200:
+#      description: Success. A json return of valid statuses for the lpiLogicalStatus.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressResponseCustodianListContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /custodians          uk.gov.ons.addressIndex.server.controllers.CodelistController.codeListCustodian()
+
+###
+#  summary: Return a list of available logical status values
+#  description: List of valid statuses e.g. 8=historical
+#  responses:
+#    200:
+#      description: Success. A json return of valid statuses for the lpiLogicalStatus.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressResponseLogicalStatusListContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /logicalstatuses      uk.gov.ons.addressIndex.server.controllers.CodelistController.codeListLogicalStatus()
+
+###
+#  summary: Gets an address by UPRN.
+#  description: Returns a single address, identified by its UPRN.
+#  parameters:
+#    - name: uprn
+#      schema:
+#         type: number
+#         format: long
+#      description: Specifies the address UPRN.
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search (latest if not supplied).
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.uprn.AddressByUprnResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    404:
+#      description: Not found. The requested UPRN was not found in the index.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.UPRNController.uprnQuery(uprn, historical: Option[String], verbose: Option[String], epoch: Option[String], pafdefault: Option[String])
+
+###
+#  summary: Search by partial address (for type ahead).
+#  description: Returns a list addresses, from a partial match on the input string
+#  parameters:
+#    - name: input
+#      description: Specifies the address input.
+#    - name: fallback
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Specifies whether a slow fallback query is used in the event of the main query returning no results.
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 250
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 10
+#         maximum: 100
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include historical addresses
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: highlight
+#      schema:
+#         type: string
+#         default: "on"
+#      description: include detailed highlighting info, options are off, on or debug
+#    - name: favourpaf
+#      schema:
+#         type: boolean
+#         default: true
+#      description: paf beats nag on draw for best match
+#    - name: favourwelsh
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Welsh beats English on draw for best match
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in England as a decimal from 0 to 10
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Northern Ireland as a decimal from 0 to 10
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Scotland as a decimal from 0 to 10
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Wales as a decimal from 0 to 10
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Channel Islands as a decimal from 0 to 10
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Isle of Man as a decimal from 0 to 10
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses outside country boundaries as a decimal from 0 to 10
+#    - name: timeout
+#      schema:
+#         type: integer
+#         default: 250
+#         maximum: 5000
+#      description: Number of milliseconds to allow query to run before bailing out with results so far
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.partialaddress.AddressByPartialAddressResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/partial    uk.gov.ons.addressIndex.server.controllers.PartialAddressController.partialAddressQuery(input, fallback: Option[String], offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], highlight: Option[String], favourpaf: Option[String], favourwelsh: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], timeout: Option[String])
+
+###
+#  summary: Search by partial address (for type ahead). RH version
+#  description: Returns a list addresses, from a partial match on the input string
+#  parameters:
+#    - name: input
+#      schema:
+#         type: string
+#      description: Specifies the address input.
+#    - name: fallback
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Specifies whether a slow fallback query is used in the event of the main query returning no results.
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 250
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 10
+#         maximum: 100
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: favourpaf
+#      schema:
+#         type: boolean
+#         default: true
+#      description: paf beats nag on draw for best match
+#    - name: favourwelsh
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Welsh beats English on draw for best match
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in England as a decimal from 0 to 10
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Northern Ireland as a decimal from 0 to 10
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Scotland as a decimal from 0 to 10
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Wales as a decimal from 0 to 10
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Channel Islands as a decimal from 0 to 10
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Isle of Man as a decimal from 0 to 10
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses outside country boundaries as a decimal from 0 to 10
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.rh.AddressByRHPartialAddressResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/rh/partial    uk.gov.ons.addressIndex.server.controllers.RHPartialAddressController.partialAddressQueryRH(input, fallback: Option[String], offset: Option[String], limit: Option[String], classificationfilter: Option[String], epoch: Option[String], favourpaf: Option[String], favourwelsh: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
+
+###
+#  summary: Custom EQ UPRN endpoint. Gets an address by UPRN.
+#  description: Returns a single address, identified by its UPRN in the custom EQ format.
+#  parameters:
+#    - name: uprn
+#      schema:
+#         type: integer
+#      description: Specifies the address UPRN.
+#    - name: addresstype
+#      schema:
+#         type: string
+#         default: paf
+#      description: Version of the address to return - paf, welshpaf, nag, welshnag, nisra
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.eq.AddressByEQUprnResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    404:
+#      description: Not found. The requested UPRN was not found in the index.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/eq/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.EQUPRNController.uprnQueryEQ(uprn, addresstype : Option[String], epoch: Option[String])
+
+###
+#  summary: Custom RH UPRN endpoint. Gets an address by UPRN.
+#  description: Returns a single address, identified by its UPRN in the custom EQ format.
+#  parameters:
+#    - name: uprn
+#      schema:
+#         type: integer
+#      description: Specifies the address UPRN.
+#    - name: addresstype
+#      schema:
+#         type: string
+#         default: paf
+#      description: Version of the address to return - paf, welshpaf, nag, welshnag, nisra
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.rh.AddressByRHUprnResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    404:
+#      description: Not found. The requested UPRN was not found in the index.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/rh/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.RHUPRNController.uprnQueryRH(uprn, addresstype : Option[String], epoch: Option[String])
+
+###
+#  summary: Custom EQ endpoint that will pass the request to either the EQ partial endpoint or the postcode endpoint depending on what input string is submitted.
+#  description: Returns a list of addresses, from either a partial or postcode match on the input string
+#  parameters:
+#    - name: input
+#      description: Specifies the address input.
+#    - name: fallback
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Specifies whether a slow fallback query is used in the event of the main query returning no results.
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 5000
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 100
+#         maximum: 5000
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: favourpaf
+#      schema:
+#         type: boolean
+#         default: true
+#      description: paf beats nag on draw for best match
+#    - name: favourwelsh
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Welsh beats English on draw for best match
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in England as a decimal from 0 to 10
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Northern Ireland as a decimal from 0 to 10
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Scotland as a decimal from 0 to 10
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Wales as a decimal from 0 to 10
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Channel Islands as a decimal from 0 to 10
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses in Isle of Man as a decimal from 0 to 10
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Weighting for addresses outside country boundaries as a decimal from 0 to 10
+#    - name: groupfullpostcodes
+#      schema:
+#         type: string
+#         default: no
+#      description: Group full postcode output yes, no or combo (combined response, slower)
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            oneOf:
+#              - $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.eq.AddressByEQPostcodeResponseContainer"
+#              - $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.postcode.AddressByGroupedPostcodeResponseContainer"
+#              - $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.eq.AddressByEQPartialAddressResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/eq    uk.gov.ons.addressIndex.server.controllers.EQController.eqQuery(input, fallback: Option[String], offset: Option[String], limit: Option[String], classificationfilter: Option[String], epoch: Option[String], favourpaf: Option[String], favourwelsh: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], groupfullpostcodes: Option[String])
+
+###
+#  summary: Search for an address by a partial postcode, with grouped results.
+#  description: Returns full postcodes that match a partial postcode with a count of the number of addresses in each
+#  parameters:
+#    - name: postcode
+#      schema:
+#         type: string
+#      description: Specifies the partial postcode search string (e.g. 'HA4 8').
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 5000
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 100
+#         maximum: 5000
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include historical addresses
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in England
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Northern Ireland
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Scotland
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Wales
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Channel Islands
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Isle of Man
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses outside country boundaries
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.postcode.AddressByGroupedPostcodeResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/groupedpostcode/:postcode          uk.gov.ons.addressIndex.server.controllers.GroupedPostcodeController.groupedPostcodeQuery(postcode, offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
+
+###
+#  summary: Search for an address by postcode.
+#  description: Returns a alpha-numeric ordered list of addresses matching the postcode query.
+#  parameters:
+#    - name: postcode
+#      schema:
+#         type: string
+#      description: Specifies the postcode search string (e.g. 'HA4 8RG').
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 5000
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 100
+#         maximum: 5000
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include historical addresses
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in England
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Northern Ireland
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Scotland
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Wales
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Channel Islands
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Isle of Man
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses outside country boundaries
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.postcode.AddressByPostcodeResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/postcode/:postcode          uk.gov.ons.addressIndex.server.controllers.PostcodeController.postcodeQuery(postcode, offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], pafdefault: Option[String])
+
+###
+#  summary: Search for an address by postcode. RH version
+#  description: Returns a alpha-numeric ordered list of addresses matching the postcode query.
+#  parameters:
+#    - name: postcode
+#      schema:
+#         type: string
+#      description: Specifies the postcode search string (e.g. 'HA4 8RG').
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 5000
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 100
+#         maximum: 5000
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: favourpaf
+#      schema:
+#         type: boolean
+#         default: true
+#      description: paf beats nag on draw for best match
+#    - name: favourwelsh
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Welsh beats English on draw for best match
+#    - name: epoch
+#      schema:
+#          type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in England
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Northern Ireland
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Scotland
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Wales
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Channel Islands
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Isle of Man
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses outside country boundaries
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.rh.AddressByRHPostcodeResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/rh/postcode/:postcode          uk.gov.ons.addressIndex.server.controllers.RHPostcodeController.postcodeQueryRH(postcode, offset: Option[String], limit: Option[String], classificationfilter: Option[String], favourpaf: Option[String], favourwelsh: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
+
+###
+#  summary: Search for addresses in a postcode_street_town grouping (called a bucket)
+#  description: Performs a wildcard search using postcode, street and town concatenated. Asterisk symbols can be used for wildcarding.
+#  parameters:
+#    - name: postcode
+#      schema:
+#         type: string
+#         default: "*"
+#      description: Specifies the postcode part of the bucket (e.g. 'HA4 8RG').
+#    - name: streetname
+#      schema:
+#         type: string
+#         default: "*"
+#      description: Specifies the street part of the bucket (e.g. 'Acacia Avenue').
+#    - name: townname
+#      schema:
+#         type: string
+#         default: "*"
+#      description: Specifies the town part of the bucket (e.g. 'Ruislip').
+#    - name: offset
+#      schema:
+#         type: integer
+#         default: 0
+#         maximum: 1000
+#      description: Specifies the offset from zero, used for pagination.
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 10
+#         maximum: 100
+#      description: Specifies the number of addresses to return.
+#    - name: classificationfilter
+#      schema:
+#          type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: favourpaf
+#      schema:
+#         type: boolean
+#         default: true
+#      description: paf beats nag on draw for best match
+#    - name: favourwelsh
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Welsh beats English on draw for best match
+#    - name: epoch
+#      schema:
+#          type: string
+#      description: Select a specific AddressBase Epoch to search.
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.eq.AddressByEQBucketResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/eq/bucket          uk.gov.ons.addressIndex.server.controllers.EQBucketController.bucketQueryEQ(postcode: Option[String], streetname: Option[String], townname: Option[String], offset: Option[String], limit: Option[String], classificationfilter: Option[String], favourpaf: Option[String], favourwelsh: Option[String], epoch: Option[String])
+
+
+
+
+###
+#  summary: Search for a random address.
+#  description: Returns a random address.
+#  parameters:
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: limit
+#      schema:
+#         type: integer
+#         default: 1
+#         maximum: 100
+#      description: Specifies the number of addresses to return.
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#    - name: eboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in England
+#    - name: nboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Northern Ireland
+#    - name: sboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Scotland
+#    - name: wboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Wales
+#    - name: lboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Channel Islands
+#    - name: mboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses in Isle of Man
+#    - name: jboost
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 1.0
+#      description: Set to 0 to exclude addresses outside country boundaries
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.random.AddressByRandomResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /addresses/random          uk.gov.ons.addressIndex.server.controllers.RandomController.randomQuery(classificationfilter: Option[String], limit: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], pafdefault: Option[String])
+
+###
+#  summary: Get version information.
+#  description: Returns version information for the api and the data (AddressBase).
+#  responses:
+#    200:
+#      description: Success. A json return of version information.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressResponseVersion"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /version            uk.gov.ons.addressIndex.server.controllers.VersionController.versionQuery()
+
+###
+#  summary: Get Epoch information.
+#  description: Returns epoch information for the api and the data (AddressBase).
+#  responses:
+#    200:
+#      description: Success. A json return of epoch information.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.address.AddressResponseVersion"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /epochs              uk.gov.ons.addressIndex.server.controllers.EpochOptionsController.epochQuery()
+
+###
+#  summary: Post bulk addresses.
+#  description: Will process all `BulkQuery` items in the `BulkBody` returns reduced information on found addresses (uprn, formatted address).
+#  parameters:
+#    - name: limitperaddress
+#      schema:
+#         type: integer
+#         default: 1
+#      description: Specifies the maximum number of matches to return per address.
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: matchthreshold
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 10.0
+#      description: Minimum confidence score (percentage) for match to be included in results.
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/AddressBulkResponse"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+POST    /bulk               uk.gov.ons.addressIndex.server.controllers.BatchController.bulk(limitperaddress: Option[String], historical: Option[String], matchthreshold: Option[String], epoch: Option[String], pafdefault: Option[String])
+
+###
+#  summary: Post bulk addresses for a full address output.
+#  description: Will process all `BulkQuery` items in the `BulkBody` this version is slower and more memory-consuming
+#               since all the information on found addresses is returned.
+#  parameters:
+#    - name: limitperaddress
+#      schema:
+#         type: integer
+#         default: 1
+#      description: Specifies the maximum number of matches to return per address.
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: matchthreshold
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 10.0
+#      description: Minimum confidence score (percentage) for match to be included in results.
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.bulk.AddressBulkResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+POST    /bulk-full          uk.gov.ons.addressIndex.server.controllers.BatchController.bulkFull(limitperaddress: Option[String], historical: Option[String], matchthreshold: Option[String], epoch: Option[String], pafdefault: Option[String])
+
+### NoDocs ###
+###
+#  summary: Test elastic is connected.
+#  responses:
+#    200:
+#      description: success
+###
+GET     /es                 uk.gov.ons.addressIndex.server.controllers.DebugController.elasticTest()
+
+### NoDocs ###
+###
+#  summary: Gets the query that should be generated for a particular input.
+#  description: Returns query that is sent to Elastic (for debug purposes).
+#  parameters:
+#    - name: input
+#      schema:
+#         type: string
+#      description: Specifies the input for which the query should be generated.
+#    - name: classificationfilter
+#      schema:
+#         type: string
+#      description: Classification code filter. Can be pattern match (ZW*), exact match (RD06), multiple exact match (RD02,RD04) or a preset keyword such as residential, commercial, educational or workplace
+#    - name: rangekm
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Limit results to those within this number of kilometers of point (decimal e.g. 0.1)
+#    - name: lat
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Latitude of point in decimal format (e.g. 50.705948).
+#    - name: lon
+#      schema:
+#         type: number
+#         format: decimal
+#      description: Longitude of point in decimal format (e.g. -3.5091076).
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search.
+#  responses:
+#    200:
+#      description: Success. A json return of the elasticsearch query.
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+GET     /query-debug        uk.gov.ons.addressIndex.server.controllers.DebugController.queryDebug(input, classificationfilter: Option[String], rangekm: Option[String], lat: Option[String], lon: Option[String], historical: Option[String], epoch: Option[String])
+
+### NoDocs ###
+###
+#  summary: Post bulk addresses as tokens.
+#  description: Bulk endpoint that accepts tokens instead of input texts for each address.
+#  parameters:
+#    - name: limitperaddress
+#      schema:
+#         type: integer
+#         default: 1
+#      description: Specifies the maximum number of matches to return per address.
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: matchthreshold
+#      schema:
+#         type: number
+#         format: decimal
+#         default: 10.0
+#      description: Minimum confidence score (percentage) for match to be included in results.
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/AddressBulkResponse"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+POST    /bulk-debug          uk.gov.ons.addressIndex.server.controllers.BatchController.bulkDebug(limitperaddress: Option[String], historical: Option[String], matchthreshold: Option[String], epoch: Option[String], pafdefault: Option[String])
+
+###
+#  summary: Gets address by list of UPRNs, posted as a JSON array called uprns.
+#  description: Returns a single address for each UPRN in the array.
+#  parameters:
+#    - name: historical
+#      schema:
+#         type: boolean
+#         default: true
+#      description: Include historical addresses
+#    - name: verbose
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Include the full address details in the response (including relatives, crossRefs, paf and nag).
+#    - name: epoch
+#      schema:
+#         type: string
+#      description: Select a specific AddressBase Epoch to search (latest if not supplied).
+#    - name: pafdefault
+#      schema:
+#         type: boolean
+#         default: false
+#      description: Populate the formatted address field with PAF if present
+#  responses:
+#    200:
+#      description: Success. A json return of matched addresses.
+#      content:
+#        application/json:
+#          schema:
+#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.uprn.AddressByMultiUprnResponseContainer"
+#    400:
+#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
+#    401:
+#      description: Unauthorised. The API key provided with the request is invalid.
+#    404:
+#      description: Multi-uprn skips not found UPRNs, so does not normall return 404s
+#    429:
+#      description: Server too busy. The Address Index API is experiencing exceptional load.
+#    500:
+#      description: Internal server error. Failed to process the request due to an internal error.
+###
+POST    /addresses/multiuprn    uk.gov.ons.addressIndex.server.controllers.MultiUprnController.multiUprn(historical: Option[String], verbose: Option[String], epoch: Option[String], pafdefault: Option[String])
+
+### NoDocs ###
+GET   /docs/swagger-ui/*file        controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+### NoDocs ###
+GET   /assets/*file                 controllers.Assets.versioned(path="/public", file: Asset)
+
+### NoDocs ###
+GET   /openapi/swagger.json          uk.gov.ons.addressIndex.server.controllers.ApiSpecs.specs()
+
+### NoDocs ###
+###
+#  summary: Used in cloud deployments to check the API is up and running correctly.
+#           This includes keeping alive channels between the API and Elasticsearch.
+#  responses:
+#    200:
+#      description: success
+###
+GET     /healthz            uk.gov.ons.addressIndex.server.controllers.general.ApplicationController.healthz()
+
+
