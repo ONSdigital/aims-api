@@ -2,7 +2,7 @@ package uk.gov.ons.addressIndex.server.controllers
 
 import play.api.mvc.ControllerComponents
 import play.api.Configuration
-import com.iheart.playSwagger.SwaggerSpecGenerator
+import com.iheart.playSwagger.generator.{NamingConvention, SwaggerSpecGenerator}
 import play.api.libs.json.JsString
 import play.api.mvc._
 
@@ -13,7 +13,8 @@ class ApiSpecs @Inject()(cc: ControllerComponents, config: Configuration) extend
   implicit val cl = getClass.getClassLoader
 
   val domainPackage = "uk.gov.ons.addressIndex.model.server.response"
-  lazy val generator = SwaggerSpecGenerator(true,domainNameSpaces = domainPackage)
+
+  lazy val generator = SwaggerSpecGenerator(namingConvention = NamingConvention.None, swaggerV3 = true,domainNameSpaces = domainPackage)
 
 // it is possible to modify the swagger output and items can be drawn from config
 

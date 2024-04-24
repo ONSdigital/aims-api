@@ -11,15 +11,12 @@ import sbtassembly.AssemblyPlugin.autoImport._
 import spray.revolver.RevolverPlugin.autoImport.Revolver
 import com.typesafe.sbt.packager.docker._
 
-//routesImport := Seq.empty
-
 lazy val Versions = new {
   val elastic4s = "7.17.0"
   val scala = "2.13.13"
   val scapegoatVersion = "2.1.5"
   val akkaVersion = "2.6.15"
 }
-//scalaVersion := "2.13.13"
 
 name := "address-index"
 scmInfo := Some(
@@ -66,9 +63,6 @@ lazy val Resolvers: Seq[MavenRepository] = Seq(
 
 
 lazy val localCommonSettings: Seq[Def.Setting[_]] = Seq(
- // javaOptions in Universal ++= Seq(
- //   "-Dpidfile.path=/dev/null"
-  //)
   ThisBuild / scalaVersion  := Versions.scala,
   ThisBuild / scapegoatVersion := Versions.scapegoatVersion,
   ThisBuild / scalacOptions ++= Seq(
@@ -94,11 +88,11 @@ lazy val localCommonSettings: Seq[Def.Setting[_]] = Seq(
 )
 
 val commonDeps = Seq(
-  "org.scalatest" %% "scalatest" % "3.2.17" % Test,
-  "org.scalamock" %% "scalamock" % "5.2.0" % Test,
+  "org.scalatest" %% "scalatest" % "3.2.18" % Test,
+  "org.scalamock" %% "scalamock" % "6.0.0" % Test,
   "com.typesafe" % "config" % "1.4.3",
   "com.github.pureconfig" %% "pureconfig" % "0.17.6",
-  "com.lihaoyi" %% "pprint" % "0.8.1",
+  "com.lihaoyi" %% "pprint" % "0.9.0",
   "com.sksamuel.elastic4s" %% "elastic4s-core" % Versions.elastic4s excludeAll ExclusionRule(organization = "org.apache.logging.log4j"),
   "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % Versions.elastic4s excludeAll ExclusionRule(organization = "org.apache.logging.log4j"),
   // testing
@@ -123,7 +117,7 @@ val serverDeps = Seq(
   specs2 % Test,
   "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test,
   "org.webjars" % "swagger-ui" % "5.13.0",
-  "com.iheart" %% "play-swagger" % "0.10.6-PLAY2.8",
+  "io.github.play-swagger" %% "play-swagger" % "1.7.0",
   "com.typesafe.akka" %% "akka-actor-typed" % Versions.akkaVersion,
   "com.typesafe.akka" %% "akka-protobuf-v3" % Versions.akkaVersion,
   "com.typesafe.akka" %% "akka-stream" % Versions.akkaVersion,
