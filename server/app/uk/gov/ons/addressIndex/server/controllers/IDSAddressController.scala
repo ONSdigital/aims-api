@@ -88,7 +88,7 @@ class IDSAddressController @Inject()(val controllerComponents: ControllerCompone
 
     // reduce scalefactor for short input
     val sigmoidScaleFactorNormal = conf.config.elasticSearch.scaleFactor
-    val inputTokenCount = input.replace(",", " ").split("\\s+").size
+    val inputTokenCount = input.replace(",", " ").split("\\s+").length
     val sigmoidScaleFactor = inputTokenCount match {
       case 1 => 6
       case 2 => 12
@@ -235,7 +235,7 @@ class IDSAddressController @Inject()(val controllerComponents: ControllerCompone
           isBlank = input.isEmpty && rangeVal != "" && latVal != "" && lonVal != "" && filterString != ""
         )
 
-        implicit val success = Success[HybridAddressCollection](_ != null)
+        implicit val success: Success[HybridAddressCollection] = Success[HybridAddressCollection](_ != null)
 
         val request: Future[HybridAddressCollection] =
           retry.Pause(3, 1.seconds).apply { ()  =>

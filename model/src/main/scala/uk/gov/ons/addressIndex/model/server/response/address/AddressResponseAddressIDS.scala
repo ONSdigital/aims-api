@@ -1,16 +1,13 @@
 package uk.gov.ons.addressIndex.model.server.response.address
 
 import play.api.libs.json.{Format, Json}
-import uk.gov.ons.addressIndex.model.db.index.{HybridAddress, NationalAddressGazetteerAddress}
+import uk.gov.ons.addressIndex.model.db.index.HybridAddress
 
 /**
   * Contains address information retrieved in ES (PAF or NAG)
   *
-  * @param uprn             uprn
-  * @param formattedAddress cannonical address form
-  * @param paf              optional, information from Paf index
-  * @param nag              optional, information from Nag index
-  * @param underlyingScore  score from elastic search
+  * @param addressEntryId             uprn equivalent
+  * @param confidenceScore  score from elastic search / Hopper / Sigmoid formula
   *
   */
 case class AddressResponseAddressIDS(addressEntryId: String,
@@ -26,7 +23,7 @@ object AddressResponseAddressIDS {
     * @param other HybridAddress from ES
     * @return
     */
-  def fromHybridAddress(other: HybridAddress, verbose: Boolean): AddressResponseAddressIDS = {
+  def fromHybridAddress(other: HybridAddress): AddressResponseAddressIDS = {
 
     AddressResponseAddressIDS(
       addressEntryId = other.addressEntryId,

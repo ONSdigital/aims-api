@@ -162,8 +162,8 @@ object Tokens {
   /**
     * Check for hidden duplicate postcode e.g PO155RR and P015 5RR
     *
-    * @param string postcode tokens with possible duplicate
-    * @return string postcode parts without duplicate
+    * @param postcodeParts tokens with possible duplicate
+    * @return String postcode parts without duplicate
     */
   def removeConcatenatedDuplicatePostcode(postcodeParts: String): String = {
     val pcList = postcodeParts.split(" ")
