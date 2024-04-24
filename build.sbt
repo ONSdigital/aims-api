@@ -11,15 +11,12 @@ import sbtassembly.AssemblyPlugin.autoImport._
 import spray.revolver.RevolverPlugin.autoImport.Revolver
 import com.typesafe.sbt.packager.docker._
 
-//routesImport := Seq.empty
-
 lazy val Versions = new {
   val elastic4s = "7.17.0"
   val scala = "2.13.13"
   val scapegoatVersion = "2.1.5"
   val akkaVersion = "2.6.15"
 }
-//scalaVersion := "2.13.13"
 
 name := "address-index"
 scmInfo := Some(
@@ -66,9 +63,6 @@ lazy val Resolvers: Seq[MavenRepository] = Seq(
 
 
 lazy val localCommonSettings: Seq[Def.Setting[_]] = Seq(
- // javaOptions in Universal ++= Seq(
- //   "-Dpidfile.path=/dev/null"
-  //)
   ThisBuild / scalaVersion  := Versions.scala,
   ThisBuild / scapegoatVersion := Versions.scapegoatVersion,
   ThisBuild / scalacOptions ++= Seq(
