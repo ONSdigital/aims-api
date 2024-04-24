@@ -90,6 +90,7 @@ lazy val localCommonSettings: Seq[Def.Setting[_]] = Seq(
 val commonDeps = Seq(
   "org.scalatest" %% "scalatest" % "3.2.18" % Test,
   "org.scalamock" %% "scalamock" % "6.0.0" % Test,
+  "com.github.nscala-time" %% "nscala-time" % "2.32.0" % Test,
   "com.typesafe" % "config" % "1.4.3",
   "com.github.pureconfig" %% "pureconfig" % "0.17.6",
   "com.lihaoyi" %% "pprint" % "0.9.0",
