@@ -12,10 +12,10 @@ import spray.revolver.RevolverPlugin.autoImport.Revolver
 import com.typesafe.sbt.packager.docker._
 
 lazy val Versions = new {
-  val elastic4s = "7.17.0"
+  val elastic4s = "7.17.1"
   val scala = "2.13.13"
   val scapegoatVersion = "2.1.5"
-  val akkaVersion = "2.6.15"
+  val akkaVersion = "2.8.5"
 }
 
 name := "address-index"
@@ -66,7 +66,7 @@ lazy val localCommonSettings: Seq[Def.Setting[_]] = Seq(
   ThisBuild / scalaVersion  := Versions.scala,
   ThisBuild / scapegoatVersion := Versions.scapegoatVersion,
   ThisBuild / scalacOptions ++= Seq(
-    "-release:17",
+    "-release:21",
     "-encoding", "UTF-8",
     "-deprecation", // warning and location for usages of deprecated APIs
     "-feature", // warning and location for usages of features that should be imported explicitly
@@ -118,7 +118,7 @@ val serverDeps = Seq(
   specs2 % Test,
   "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test,
   "org.webjars" % "swagger-ui" % "5.13.0",
-  "io.github.play-swagger" %% "play-swagger" % "1.7.0",
+  "io.github.play-swagger" %% "play-swagger" % "2.0.0",
   "com.typesafe.akka" %% "akka-actor-typed" % Versions.akkaVersion,
   "com.typesafe.akka" %% "akka-protobuf-v3" % Versions.akkaVersion,
   "com.typesafe.akka" %% "akka-stream" % Versions.akkaVersion,
@@ -152,7 +152,7 @@ lazy val `address-index-server` = project.in(file("server"))
     libraryDependencies ++= serverDeps,
     // "-Dlogback.debug=true" can be set to show which logfile is being used.
     dockerChmodType := DockerChmodType.UserGroupWriteExecute,
-    dockerBaseImage := "openjdk:15",
+    dockerBaseImage := "eclipse-temurin:21",
     dockerCommands += ExecCmd("CMD", "-Dlogger.file=/opt/docker/conf/logback-gcp.xml"),
     routesGenerator := InjectedRoutesGenerator,
     swaggerV3 := true,

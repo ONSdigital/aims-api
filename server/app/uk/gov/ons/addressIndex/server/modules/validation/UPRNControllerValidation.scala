@@ -38,7 +38,7 @@ class UPRNControllerValidation @Inject()(implicit conf: ConfigModule, versionPro
        case Failure(_) =>
          logger.systemLog(ip=requestValues.ip,url=requestValues.url,endpoint=requestValues.endpoint,networkid=requestValues.networkid,
            responsecode = "400",badRequestMessage = UprnNotNumericAddressResponseError.message)
-         return Some(futureJsonBadRequest(UprnNotNumeric(queryValues)))
+         Some(futureJsonBadRequest(UprnNotNumeric(queryValues)))
      }
    }
    None
