@@ -406,7 +406,7 @@ GET     /logicalstatuses      uk.gov.ons.addressIndex.server.controllers.Codelis
 #    500:
 #      description: Internal server error. Failed to process the request due to an internal error.
 ###
-GET     /addresses/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.UPRNController.uprnQuery(uprn, historical: Option[String], verbose: Option[String], epoch: Option[String], pafdefault: Option[String])
+GET     /addresses/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.UPRNController.uprnQuery(uprn: String, historical: Option[String], verbose: Option[String], epoch: Option[String], pafdefault: Option[String])
 
 ###
 #  summary: Search by partial address (for type ahead).
@@ -668,7 +668,7 @@ GET     /addresses/rh/partial    uk.gov.ons.addressIndex.server.controllers.RHPa
 #    500:
 #      description: Internal server error. Failed to process the request due to an internal error.
 ###
-GET     /addresses/eq/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.EQUPRNController.uprnQueryEQ(uprn, addresstype : Option[String], epoch: Option[String])
+GET     /addresses/eq/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.EQUPRNController.uprnQueryEQ(uprn: String, addresstype : Option[String], epoch: Option[String])
 
 ###
 #  summary: Custom RH UPRN endpoint. Gets an address by UPRN.
@@ -705,7 +705,7 @@ GET     /addresses/eq/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.E
 #    500:
 #      description: Internal server error. Failed to process the request due to an internal error.
 ###
-GET     /addresses/rh/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.RHUPRNController.uprnQueryRH(uprn, addresstype : Option[String], epoch: Option[String])
+GET     /addresses/rh/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.RHUPRNController.uprnQueryRH(uprn: String, addresstype : Option[String], epoch: Option[String])
 
 ###
 #  summary: Custom EQ endpoint that will pass the request to either the EQ partial endpoint or the postcode endpoint depending on what input string is submitted.
@@ -912,7 +912,7 @@ GET     /addresses/eq    uk.gov.ons.addressIndex.server.controllers.EQController
 #    500:
 #      description: Internal server error. Failed to process the request due to an internal error.
 ###
-GET     /addresses/groupedpostcode/:postcode          uk.gov.ons.addressIndex.server.controllers.GroupedPostcodeController.groupedPostcodeQuery(postcode, offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
+GET     /addresses/groupedpostcode/:postcode          uk.gov.ons.addressIndex.server.controllers.GroupedPostcodeController.groupedPostcodeQuery(postcode: String, offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
 
 ###
 #  summary: Search for an address by postcode.
@@ -1015,7 +1015,7 @@ GET     /addresses/groupedpostcode/:postcode          uk.gov.ons.addressIndex.se
 #    500:
 #      description: Internal server error. Failed to process the request due to an internal error.
 ###
-GET     /addresses/postcode/:postcode          uk.gov.ons.addressIndex.server.controllers.PostcodeController.postcodeQuery(postcode, offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], pafdefault: Option[String])
+GET     /addresses/postcode/:postcode          uk.gov.ons.addressIndex.server.controllers.PostcodeController.postcodeQuery(postcode: String, offset: Option[String], limit: Option[String], classificationfilter: Option[String], historical: Option[String], verbose: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String], pafdefault: Option[String])
 
 ###
 #  summary: Search for an address by postcode. RH version
@@ -1117,7 +1117,7 @@ GET     /addresses/postcode/:postcode          uk.gov.ons.addressIndex.server.co
 #    500:
 #      description: Internal server error. Failed to process the request due to an internal error.
 ###
-GET     /addresses/rh/postcode/:postcode          uk.gov.ons.addressIndex.server.controllers.RHPostcodeController.postcodeQueryRH(postcode, offset: Option[String], limit: Option[String], classificationfilter: Option[String], favourpaf: Option[String], favourwelsh: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
+GET     /addresses/rh/postcode/:postcode          uk.gov.ons.addressIndex.server.controllers.RHPostcodeController.postcodeQueryRH(postcode: String, offset: Option[String], limit: Option[String], classificationfilter: Option[String], favourpaf: Option[String], favourwelsh: Option[String], epoch: Option[String], eboost: Option[String], nboost: Option[String], sboost: Option[String], wboost: Option[String], lboost: Option[String], mboost: Option[String], jboost: Option[String])
 
 ###
 #  summary: Search for addresses in a postcode_street_town grouping (called a bucket)

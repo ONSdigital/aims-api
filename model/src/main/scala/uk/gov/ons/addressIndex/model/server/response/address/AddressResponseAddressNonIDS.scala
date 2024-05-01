@@ -1,16 +1,27 @@
 package uk.gov.ons.addressIndex.model.server.response.address
 
 import play.api.libs.json.{Format, Json}
-import uk.gov.ons.addressIndex.model.db.index._
 
 /**
-  * Contains address information retrieved in ES (PAF or NAG)
+  * Create the non-IDS (DAP and UI) using fields in the generic response
   *
-  * @param uprn             uprn
-  * @param formattedAddress cannonical address form
-  * @param paf              optional, information from Paf index
-  * @param nag              optional, information from Nag index
-  * @param underlyingScore  score from elastic search
+  * @param uprn                     uprn of matched address
+  * @param parentUprn               parent uprn of matched address
+  * @param relatives                hierarchy information
+  * @param crossRefs                links to other datasets
+  * @param formattedAddress         cannonical address form
+  * @param formattedAddressNag      cannonical address form
+  * @param formattedAddressPaf      cannonical address form
+  * @param welshFormattedAddressNag cannonical address form
+  * @param welshFormattedAddressPaf cannonical address form
+  * @param highlights               search engine "hit" data
+  * @param paf                      optional, information from Paf index
+  * @param nag                      optional, information from Nag index
+  * @param geo                      lat lon and easting northing
+  * @param classificationCode       ABP code e.g. RD02 = detached house
+  * @param lpiLogicalStatus         ABP logical status of entry e.g. 8=historic
+  * @param confidenceScore          bespoke confifence score 0-100
+  * @param underlyingScore          score from elastic search
   *
   */
 case class AddressResponseAddressNonIDS(uprn: String,

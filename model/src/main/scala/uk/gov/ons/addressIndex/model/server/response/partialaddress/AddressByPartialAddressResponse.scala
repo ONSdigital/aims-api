@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.model.server.response.partialaddress
 
 import play.api.libs.json.{Format, Json}
-import uk.gov.ons.addressIndex.model.server.response.address.{AddressBySearchResponse, AddressResponseAddress, AddressResponseAddressNonIDS, AddressResponseScoreSummary, CountryBoosts}
+import uk.gov.ons.addressIndex.model.server.response.address.{AddressBySearchResponse, AddressResponseAddressNonIDS, CountryBoosts}
 
 /**
   * Contains relevant, to the address request, data

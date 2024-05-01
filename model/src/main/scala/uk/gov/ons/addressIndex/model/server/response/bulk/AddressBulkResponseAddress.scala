@@ -2,7 +2,7 @@ package uk.gov.ons.addressIndex.model.server.response.bulk
 
 import play.api.libs.json.{Format, Json}
 import uk.gov.ons.addressIndex.model.db.BulkAddress
-import uk.gov.ons.addressIndex.model.server.response.address.{AddressResponseAddress, AddressResponseAddressNonIDS}
+import uk.gov.ons.addressIndex.model.server.response.address.AddressResponseAddressNonIDS
 
 /**
   *
@@ -10,12 +10,15 @@ import uk.gov.ons.addressIndex.model.server.response.address.{AddressResponseAdd
   *
   * @param id                      address's id provided in the input
   * @param inputAddress            input address
-  * @param uprn                    found address' uprn
+  * @param uprn                    found address's uprn
+  * @param parentUprn              found address's parent uprn
   * @param matchedFormattedAddress formatted found address
   * @param matchedAddress          found address
   * @param tokens                  tokens into which the input address was split
   * @param confidenceScore         resulting address score
-  * @param underlyingScore
+  * @param underlyingScore         raw search engine score
+  * @param recommendationCode      A = Accept, I = Investigate
+  * @param matchtype               M = Multiple, S = Single, N = Non-match
   */
 case class AddressBulkResponseAddress(id: String,
                                       inputAddress: String,

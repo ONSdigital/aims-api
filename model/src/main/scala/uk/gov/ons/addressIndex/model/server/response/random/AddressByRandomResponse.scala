@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.model.server.response.random
 
 import play.api.libs.json.{Format, Json}
-import uk.gov.ons.addressIndex.model.server.response.address.{AddressResponseAddress, AddressResponseAddressNonIDS, CountryBoosts}
+import uk.gov.ons.addressIndex.model.server.response.address.{AddressResponseAddressNonIDS, CountryBoosts}
 
 /**
   * Contains relevant, to the address request, data

@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.model.server.response.postcode
 
 import play.api.libs.json.{Format, Json}
-import uk.gov.ons.addressIndex.model.server.response.address.{AddressResponseAddress, AddressResponseAddressNonIDS}
+import uk.gov.ons.addressIndex.model.server.response.address.AddressResponseAddressNonIDS
 
 /**
   * Contains relevant, to the address request, data

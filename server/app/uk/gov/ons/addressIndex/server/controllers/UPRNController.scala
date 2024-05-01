@@ -32,7 +32,7 @@ class UPRNController @Inject()(val controllerComponents: ControllerComponents,
   extends PlayHelperController(versionProvider) with UPRNControllerResponse {
 
   lazy val logger = new AddressAPILogger("address-index-server:UPRNController")
-  val circuitBreakerDisabled = conf.config.elasticSearch.circuitBreakerDisabled
+  val circuitBreakerDisabled: Boolean = conf.config.elasticSearch.circuitBreakerDisabled
 
   /**
     * UPRN query API
@@ -113,7 +113,7 @@ class UPRNController @Inject()(val controllerComponents: ControllerComponents,
           pafDefault = pafDefault
         )
 
-        implicit val success = Success[Option[HybridAddress]](_ != null)
+        implicit val success: Success[Option[HybridAddress]] = Success[Option[HybridAddress]](_ != null)
 
         val request: Future[Option[HybridAddress]] =
           retry.Pause(3, 1.seconds).apply { ()  =>

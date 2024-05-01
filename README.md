@@ -6,7 +6,7 @@
 
 ### What is this repository for? ###
 
-Address Index is a Play Framework (2.8.8) application which matches addresses. 
+Address Index is a Play Framework (2.9.1) application which matches addresses. 
 
 The system works via large Elasticsearch (7.17.1) indices build primarily from AddressBase Premium data.
 
@@ -21,7 +21,7 @@ Plans to deploy the application as a service available to all members of the Pub
 ### How do I get a sneek peak of the API? ###
 
 Docker images have been created which give a feel for the API. The Docker images include an Elasticsearch 7.17.1 cluster prebuilt with the required Address Index indices. The indices are a subset of AddressBase (the Exeter subset).
-Another Docker image contains a version of the API that will work with the Elasticsearch indices. We have recently added a third image to deploy the improved Python UI. The ```docker-compose.yml``` file also contains a Kibana and Cerebro service to view the cluster.  Unfortunately none of the current images are publicly available at the moment, but we hope to remedy this soon. To get started:
+Another Docker image contains a version of the API that will work with the Elasticsearch indices. We have recently added a third image to deploy the improved Python UI. The ```docker-compose.yml``` file also contains a Kibana and Cerebro service to view the cluster. To get started:
 
 1) Run ```docker-compose up``` on https://github.com/ONSdigital/address-index-api/blob/develop/docker-compose.yml
 
@@ -52,9 +52,9 @@ Another Docker image contains a version of the API that will work with the Elast
 
 1) Required Installations
 
-    * Java 11 
-    * sbt 1.5.5
-    * Scala 2.13.6
+    * Java 17 or 21 
+    * sbt 1.9.9
+    * Scala 2.13.13
     * Elasticsearch 7.17.1
     * An IDE such as IntelliJ is recommended
 
