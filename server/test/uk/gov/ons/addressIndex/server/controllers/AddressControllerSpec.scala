@@ -1028,35 +1028,6 @@ class AddressControllerSpec extends PlaySpec with Results {
       actual mustBe expected
     }
 
-//    "reply with a filtered list of postcode results via eq bucket endpoint" in {
-//      // Given
-//      val controller = eqController
-//      val expected = Json.toJson(AddressByEQBucketResponseContainer(
-//        apiVersion = apiVersionExpected,
-//        dataVersion = dataVersionExpected,
-//        termsAndConditions = termsAndConditionsExpected,
-//        response = AddressByEQBucketResponse(
-//          postcode = "EX4 1A*",
-//          streetname = "Aardvark Avenue",
-//          townname = "Exeter",
-//          addresses = Seq(AddressResponseAddressBucketEQ("1", "31", "PAF")),
-//          filter = "",
-//          limit = 100,
-//          offset = 0,
-//          total = 1,
-//          maxScore = 1.0f,
-//          epoch = ""
-//        ),
-//        OkAddressResponseStatus
-//      ))
-//      // When
-//      val result: Future[Result] = controller.eqQuery("EX4 1A", favourpaf = Some("true"), favourwelsh = Some("false")).apply(FakeRequest())
-//      val actual: JsValue = contentAsJson(result)
-//
-//      // Then
-//      status(result) mustBe OK
-//      actual mustBe expected
-//    }
     "reply with a 400 error for invalid call to eq bucket endpoint" in {
       // Given
       val controller = eqBucketController
