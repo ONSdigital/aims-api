@@ -5,7 +5,7 @@ import play.api.mvc._
 import retry.Success
 import uk.gov.ons.addressIndex.model.db.index.HybridAddressCollection
 import uk.gov.ons.addressIndex.model.server.response.address.{AddressResponseAddress, FailedRequestToEsError, OkAddressResponseStatus}
-import uk.gov.ons.addressIndex.model.server.response.address.AddressResponseAddressNonIDS.addressesToNonIDS
+import uk.gov.ons.addressIndex.model.server.response.address.AddressResponseAddressNonIDS.{uprnAddressesToNonIDS}
 import uk.gov.ons.addressIndex.model.server.response.uprn.{AddressByMultiUprnResponse, AddressByMultiUprnResponseContainer}
 import uk.gov.ons.addressIndex.model.MultiUprnBody
 import uk.gov.ons.addressIndex.server.model.dao.{QueryValues, RequestValues}
@@ -138,7 +138,7 @@ class MultiUprnController @Inject()(val controllerComponents: ControllerComponen
                 apiVersion = apiVersion,
                 dataVersion = dataVersion,
                 response = AddressByMultiUprnResponse(
-                  addresses = addressesToNonIDS(addresses),
+                  addresses = uprnAddressesToNonIDS(addresses,"A"),
                   historical = hist,
                   epoch = epochVal,
                   verbose = verb,

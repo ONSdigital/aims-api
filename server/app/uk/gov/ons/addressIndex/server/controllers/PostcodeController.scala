@@ -169,7 +169,7 @@ class PostcodeController @Inject()(val controllerComponents: ControllerComponent
           pafDefault = pafDefault
         )
 
-        implicit val success = Success[HybridAddressCollection](_ != null)
+        implicit val success: Success[HybridAddressCollection] = Success[HybridAddressCollection](_ != null)
 
         val request: Future[HybridAddressCollection] =
           retry.Pause(3, 1.seconds).apply { ()  =>
@@ -194,7 +194,7 @@ class PostcodeController @Inject()(val controllerComponents: ControllerComponent
                 dataVersion = dataVersion,
                 response = AddressByPostcodeResponse(
                   postcode = postcode,
-                  addresses = addressesToNonIDS(addresses),
+                  addresses = addressesToNonIDS(addresses,"A"),
                   filter = filterString,
                   historical = hist,
                   epoch = epochVal,

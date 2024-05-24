@@ -92,7 +92,7 @@ class AddressController @Inject()(val controllerComponents: ControllerComponents
 
     // reduce scalefactor for short input
     val sigmoidScaleFactorNormal = conf.config.elasticSearch.scaleFactor
-    val inputTokenCount = decodedInput.replace(",", " ").split("\\s+").size
+    val inputTokenCount = decodedInput.replace(",", " ").split("\\s+").length
     val sigmoidScaleFactor = inputTokenCount match {
       case 1 => 6
       case 2 => 12
@@ -230,7 +230,7 @@ class AddressController @Inject()(val controllerComponents: ControllerComponents
           isBlank = input.isEmpty && rangeVal != "" && latVal != "" && lonVal != "" && filterString != ""
         )
 
-        implicit val success = Success[HybridAddressCollection](_ != null)
+        implicit val success: Success[HybridAddressCollection] = Success[HybridAddressCollection](_ != null)
 
         val request: Future[HybridAddressCollection] =
           retry.Pause(3, 1.seconds).apply { ()  =>
@@ -289,7 +289,7 @@ class AddressController @Inject()(val controllerComponents: ControllerComponents
                   tokens = tokens,
                   matchtype = matchType,
                   recommendationCode = AIRatingHelper.calculateAIRatingSingle(sortedAddresses).recommendationCode,
-                  addresses = addressesToNonIDS(finalAddresses),
+                  addresses = addressesToNonIDS(finalAddresses, AIRatingHelper.calculateAIRatingSingle(sortedAddresses).recommendationCode),
                   filter = filterString,
                   historical = hist,
                   epoch = epochVal,

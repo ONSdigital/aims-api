@@ -29,7 +29,7 @@ class PartialAddressController @Inject()(val controllerComponents: ControllerCom
   extends PlayHelperController(versionProvider) with PartialAddressControllerResponse {
 
   lazy val logger: AddressAPILogger = AddressAPILogger("address-index-server:PartialAddressController")
-  val circuitBreakerDisabled = conf.config.elasticSearch.circuitBreakerDisabled
+  val circuitBreakerDisabled: Boolean = conf.config.elasticSearch.circuitBreakerDisabled
   val startboost: Int = conf.config.elasticSearch.defaultStartBoost
 
   /**
@@ -222,7 +222,7 @@ class PartialAddressController @Inject()(val controllerComponents: ControllerCom
                 dataVersion = dataVersion,
                 response = AddressByPartialAddressResponse(
                   input = inputVal,
-                  addresses = addressesToNonIDS(sortAddresses),
+                  addresses = addressesToNonIDS(sortAddresses,"A"),
                   filter = filterString,
                   fallback = fall,
                   historical = hist,
