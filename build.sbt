@@ -66,7 +66,7 @@ lazy val localCommonSettings: Seq[Def.Setting[_]] = Seq(
   ThisBuild / scalaVersion  := Versions.scala,
   ThisBuild / scapegoatVersion := Versions.scapegoatVersion,
   ThisBuild / scalacOptions ++= Seq(
-    "-release:21",
+    "-release:17",
     "-encoding", "UTF-8",
     "-deprecation", // warning and location for usages of deprecated APIs
     "-feature", // warning and location for usages of features that should be imported explicitly
@@ -152,7 +152,7 @@ lazy val `address-index-server` = project.in(file("server"))
     libraryDependencies ++= serverDeps,
     // "-Dlogback.debug=true" can be set to show which logfile is being used.
     dockerChmodType := DockerChmodType.UserGroupWriteExecute,
-    dockerBaseImage := "eclipse-temurin:21",
+    dockerBaseImage := "eclipse-temurin:17",
     dockerCommands += ExecCmd("CMD", "-Dlogger.file=/opt/docker/conf/logback-gcp.xml"),
     routesGenerator := InjectedRoutesGenerator,
     swaggerV3 := true,
@@ -205,6 +205,7 @@ lazy val `address-index-server` = project.in(file("server"))
       originalFileName
     },
     Compile / resourceGenerators += Def.task {
+      version := (ThisBuild / version).value
       val file = (Compile / resourceManaged).value / "version.app"
       IO.write(file, version.value)
       Seq(file)
