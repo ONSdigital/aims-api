@@ -205,7 +205,8 @@ lazy val `address-index-server` = project.in(file("server"))
       originalFileName
     },
     Compile / resourceGenerators += Def.task {
-      version := (ThisBuild / version).value
+      // put version here for now - not picking up from version.sbt
+      version := "1.2.2"
       val file = (Compile / resourceManaged).value / "version.app"
       IO.write(file, version.value)
       Seq(file)
