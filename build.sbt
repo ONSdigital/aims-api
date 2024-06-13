@@ -205,8 +205,9 @@ lazy val `address-index-server` = project.in(file("server"))
       originalFileName
     },
     Compile / resourceGenerators += Def.task {
+      // Note that version.sbt inside server is the one being read
       val file = (Compile / resourceManaged).value / "version.app"
-      IO.write(file, version.value)
+      IO.write(file, (ThisBuild / version).value)
       Seq(file)
     }.taskValue
   )
