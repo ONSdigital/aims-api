@@ -261,6 +261,14 @@ class TokensTest extends AnyFlatSpec with should.Matchers {
     actual shouldBe expected
   }
 
+  it should "convert '10 MASKELL ROAD LONDON SW17 0LD' into '10 MASKELL ROAD LONDON SW17 0LD'" in {
+    // String should unchanged without 0LD=OLD on the ocr list
+    val input = "10 MASKELL ROAD LONDON SW17 0LD"
+    val expected = "10 MASKELL ROAD LONDON SW17 0LD"
+    val actual = Tokens.preTokenize(input).mkString(" ")
+    actual shouldBe expected
+  }
+
   it should "remove the county from 'MOONLIGHT COTTAGE COCKING MIDHURST WEST SUSSEX'" in {
     val input = "MOONLIGHT COTTAGE COCKING MIDHURST WEST SUSSEX"
     val expected = "MOONLIGHT COTTAGE COCKING MIDHURST"
@@ -289,7 +297,7 @@ class TokensTest extends AnyFlatSpec with should.Matchers {
     actual shouldBe expected
   }
 
-  it should "remove hidden duplicate postcode where spaceless version comes first " in {
+  it should "remove hidden duplicate postcode (3-digit incode) where spaceless version comes first " in {
     // Given
     val tokens = List("EX44SW", "EX4", "4SW")
     val postcodeBits = tokens.distinct.mkString(" ")
@@ -298,11 +306,29 @@ class TokensTest extends AnyFlatSpec with should.Matchers {
     actual shouldBe expected
   }
 
-  it should "remove hidden duplicate postcode where spaceless version comes third " in {
+  it should "remove hidden duplicate postcode (3-digit incode) where spaceless version comes third " in {
     // Given
     val tokens = List("EX4", "4SW", "EX44SW")
     val postcodeBits = tokens.distinct.mkString(" ")
     val expected = "EX44SW"
+    val actual = Tokens.removeConcatenatedDuplicatePostcode(postcodeBits).replaceAll("\\s", "")
+    actual shouldBe expected
+  }
+
+  it should "remove hidden duplicate postcode (4-digit incode) where spaceless version comes first " in {
+    // Given
+    val tokens = List("SW170LD" ,"SW17", "0LD")
+    val postcodeBits = tokens.distinct.mkString(" ")
+    val expected = "SW170LD"
+    val actual = Tokens.removeConcatenatedDuplicatePostcode(postcodeBits).replaceAll("\\s", "")
+    actual shouldBe expected
+  }
+
+  it should "remove hidden duplicate postcode (4-digit incode) where spaceless version comes third " in {
+    // Given
+    val tokens = List("SW17", "0LD", "SW170LD")
+    val postcodeBits = tokens.distinct.mkString(" ")
+    val expected = "SW170LD"
     val actual = Tokens.removeConcatenatedDuplicatePostcode(postcodeBits).replaceAll("\\s", "")
     actual shouldBe expected
   }
