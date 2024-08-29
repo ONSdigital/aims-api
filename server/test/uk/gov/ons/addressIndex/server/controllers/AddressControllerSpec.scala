@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.server.controllers
 
-import com.sksamuel.elastic4s.Indexes
-import com.sksamuel.elastic4s.requests.searches.SearchRequest
+import nl.gn0s1s.Indexes
+import nl.gn0s1s.requests.searches.SearchRequest
 import org.scalatestplus.play._
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._

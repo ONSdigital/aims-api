@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.server.modules.presetClassificationFilters
 
-import com.sksamuel.elastic4s.ElasticApi.boolQuery
-import com.sksamuel.elastic4s.requests.searches.queries.PrefixQuery
+import nl.gn0s1s.ElasticApi.boolQuery
+import nl.gn0s1s.requests.searches.queries.PrefixQuery
 
 object ResidentialClassificationFilter extends PresetClassificationFilter {
 

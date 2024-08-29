@@ -1,10 +1,10 @@
 package uk.gov.ons.addressIndex.server.modules
 
-import com.sksamuel.elastic4s.http.JavaClient
-import com.sksamuel.elastic4s.requests.analyzers.{CustomAnalyzerDefinition, StandardTokenizer}
-import com.sksamuel.elastic4s.requests.searches.SearchBodyBuilderFn
-import com.sksamuel.elastic4s.testkit._
-import com.sksamuel.elastic4s.{ElasticClient, ElasticNodeEndpoint, ElasticProperties}
+import nl.gn0s1s.http.JavaClient
+import nl.gn0s1s.requests.analyzers.{CustomAnalyzerDefinition, StandardTokenizer}
+import nl.gn0s1s.requests.searches.SearchBodyBuilderFn
+import nl.gn0s1s.testkit._
+import nl.gn0s1s.{ElasticClient, ElasticNodeEndpoint, ElasticProperties}
 import org.joda.time.DateTime
 import org.scalatest._
 import matchers._

@@ -2,8 +2,8 @@ package uk.gov.ons.addressIndex.server.model.dao
 
 import java.security.cert.X509Certificate
 
-import com.sksamuel.elastic4s.{ElasticClient, ElasticNodeEndpoint, ElasticProperties}
-import com.sksamuel.elastic4s.http.JavaClient
+import nl.gn0s1s.{ElasticClient, ElasticNodeEndpoint, ElasticProperties}
+import nl.gn0s1s.http.JavaClient
 import javax.inject.{Inject, Singleton}
 import javax.net.ssl.{SSLContext, X509TrustManager}
 import org.apache.http.auth.{AuthScope, UsernamePasswordCredentials}

@@ -1,8 +1,8 @@
 package uk.gov.ons.addressIndex.server.controllers
 
-import com.sksamuel.elastic4s.Show
-import com.sksamuel.elastic4s.requests.searches.SearchBodyBuilderFn
-import com.sksamuel.elastic4s.requests.searches.SearchRequest
+import nl.gn0s1s.Show
+import nl.gn0s1s.requests.searches.SearchBodyBuilderFn
+import nl.gn0s1s.requests.searches.SearchRequest
 import javax.inject.Inject
 import play.api.libs.json.Json
 import play.api.mvc._

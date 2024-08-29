@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.server.modules
 
 import com.google.inject.ImplementedBy
-import com.sksamuel.elastic4s.requests.searches.SearchRequest
+import nl.gn0s1s.requests.searches.SearchRequest
 import uk.gov.ons.addressIndex.model.db.BulkAddressRequestData
 import uk.gov.ons.addressIndex.model.db.index._
 import uk.gov.ons.addressIndex.model.server.response.bulk.AddressBulkResponseAddress

@@ -1,9 +1,9 @@
 package uk.gov.ons.addressIndex.server.modules
 
 import com.google.inject.{Inject, Singleton}
-import com.sksamuel.elastic4s.ElasticDsl._
-import com.sksamuel.elastic4s.handlers.alias.Alias
-import com.sksamuel.elastic4s.{ElasticClient, Index}
+import nl.gn0s1s.ElasticDsl._
+import nl.gn0s1s.handlers.alias.Alias
+import nl.gn0s1s.{ElasticClient, Index}
 import uk.gov.ons.addressIndex.server.model.dao.ElasticClientProvider
 import uk.gov.ons.addressIndex.server.utils.GenericLogger
 
