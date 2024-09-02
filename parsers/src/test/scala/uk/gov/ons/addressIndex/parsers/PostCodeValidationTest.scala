@@ -213,7 +213,7 @@ class PostCodeValidationTest extends AnyFlatSpec with should.Matchers {
   it should "SW170LD SW17 0LD -> SW17 0LD" in {
     // Given
     val input = Map(
-      Tokens.postcode -> "SW170LDS W17"
+      Tokens.postcode -> "SW170LD SW17 0LD"
     )
 
     val expected = Map(
