@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.model.db.index
 
-import nl.gn0s1s.requests.searches.SearchResponse
-import nl.gn0s1s.{RequestFailure, RequestSuccess, Response}
+import com.sksamuel.elastic4s.requests.searches.SearchResponse
+import com.sksamuel.elastic4s.{RequestFailure, RequestSuccess, Response}
 import play.api.Logger
 import uk.gov.ons.addressIndex.model.server.response.postcode.AddressResponsePostcodeGroup
 

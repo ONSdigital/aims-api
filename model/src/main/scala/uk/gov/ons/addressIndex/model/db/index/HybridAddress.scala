@@ -1,7 +1,7 @@
 package uk.gov.ons.addressIndex.model.db.index
 
-import nl.gn0s1s.requests.searches.SearchHit
-import nl.gn0s1s.{Hit, HitReader}
+import com.sksamuel.elastic4s.requests.searches.SearchHit
+import com.sksamuel.elastic4s.{Hit, HitReader}
 
 import scala.util.Try
 

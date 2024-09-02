@@ -1,6 +1,6 @@
 package uk.gov.ons.addressIndex.server.model.dao
 
-import nl.gn0s1s.ElasticClient
+import com.sksamuel.elastic4s.ElasticClient
 
 /**
   * Provides access to Elastic client

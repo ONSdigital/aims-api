@@ -1,8 +1,8 @@
 package uk.gov.ons.addressIndex.server.modules
 
-import nl.gn0s1s.http.JavaClient
-import nl.gn0s1s.{ElasticClient, ElasticNodeEndpoint, ElasticProperties}
-import nl.gn0s1s.testkit._
+import com.sksamuel.elastic4s.http.JavaClient
+import com.sksamuel.elastic4s.{ElasticClient, ElasticNodeEndpoint, ElasticProperties}
+import com.sksamuel.elastic4s.testkit._
 import org.scalatest._
 import matchers._
 import org.scalatest.wordspec.AnyWordSpec

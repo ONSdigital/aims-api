@@ -1,6 +1,6 @@
 package uk.gov.ons.addressIndex.server.modules.presetClassificationFilters
 
-import nl.gn0s1s.requests.searches.queries.PrefixQuery
+import com.sksamuel.elastic4s.requests.searches.queries.PrefixQuery
 import org.scalatest._
 import matchers._
 import org.scalatest.wordspec.AnyWordSpec

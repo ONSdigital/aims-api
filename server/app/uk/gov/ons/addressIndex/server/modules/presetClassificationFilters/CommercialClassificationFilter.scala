@@ -1,6 +1,6 @@
 package uk.gov.ons.addressIndex.server.modules.presetClassificationFilters
 
-import nl.gn0s1s.requests.searches.queries.PrefixQuery
+import com.sksamuel.elastic4s.requests.searches.queries.PrefixQuery
 
 object CommercialClassificationFilter extends PresetClassificationFilter {
 

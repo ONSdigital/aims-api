@@ -1,6 +1,6 @@
 package uk.gov.ons.addressIndex.server.modules.presetClassificationFilters
 
-import nl.gn0s1s.requests.searches.queries.Query
+import com.sksamuel.elastic4s.requests.searches.queries.Query
 
 trait PresetClassificationFilter {
 

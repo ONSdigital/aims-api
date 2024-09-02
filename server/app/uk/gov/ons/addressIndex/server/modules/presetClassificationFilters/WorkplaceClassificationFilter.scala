@@ -1,8 +1,8 @@
 package uk.gov.ons.addressIndex.server.modules.presetClassificationFilters
 
-import nl.gn0s1s.requests.searches.queries.compound.BoolQuery
-import nl.gn0s1s.requests.searches.queries.{PrefixQuery, Query}
-import nl.gn0s1s.requests.searches.term.TermsQuery
+import com.sksamuel.elastic4s.requests.searches.queries.compound.BoolQuery
+import com.sksamuel.elastic4s.requests.searches.queries.{PrefixQuery, Query}
+import com.sksamuel.elastic4s.requests.searches.term.TermsQuery
 import uk.gov.ons.addressIndex.parsers.Tokens
 
 object WorkplaceClassificationFilter extends PresetClassificationFilter {

@@ -1,14 +1,14 @@
 package uk.gov.ons.addressIndex.server.modules
 
-import nl.gn0s1s.ElasticDsl.{functionScoreQuery, geoDistanceQuery, _}
-import nl.gn0s1s.ElasticClient
-import nl.gn0s1s.requests.script.Script
-import nl.gn0s1s.requests.searches.aggs.TermsOrder
-import nl.gn0s1s.requests.searches.term.TermsQuery
-import nl.gn0s1s.requests.searches.queries.compound.BoolQuery
-import nl.gn0s1s.requests.searches.queries.{ConstantScore, Query}
-import nl.gn0s1s.requests.searches.sort.{FieldSort, GeoDistanceSort, SortOrder}
-import nl.gn0s1s.requests.searches.{GeoPoint, HighlightField, HighlightOptions, SearchBodyBuilderFn, SearchRequest, SearchType}
+import com.sksamuel.elastic4s.ElasticDsl.{functionScoreQuery, geoDistanceQuery, _}
+import com.sksamuel.elastic4s.ElasticClient
+import com.sksamuel.elastic4s.requests.script.Script
+import com.sksamuel.elastic4s.requests.searches.aggs.TermsOrder
+import com.sksamuel.elastic4s.requests.searches.term.TermsQuery
+import com.sksamuel.elastic4s.requests.searches.queries.compound.BoolQuery
+import com.sksamuel.elastic4s.requests.searches.queries.{ConstantScore, Query}
+import com.sksamuel.elastic4s.requests.searches.sort.{FieldSort, GeoDistanceSort, SortOrder}
+import com.sksamuel.elastic4s.requests.searches.{GeoPoint, HighlightField, HighlightOptions, SearchBodyBuilderFn, SearchRequest, SearchType}
 
 import javax.inject.{Inject, Singleton}
 import uk.gov.ons.addressIndex.model.db.index._
