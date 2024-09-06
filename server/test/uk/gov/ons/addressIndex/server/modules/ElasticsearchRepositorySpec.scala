@@ -60,8 +60,8 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
   val hybridIndexHistoricalName: String = config.config.elasticSearch.indexes.hybridIndexHistorical + "_" +  dateMillis + defaultEpoch
 
   val hybridRelLevel = 1
-  val hybridRelSibArray = List(6L, 7L)
-  val hybridRelParArray = List(8L, 9L)
+  val hybridRelSibArray: Seq[Long] = List(6L, 7L)
+  val hybridRelParArray: Seq[Long] = List(8L, 9L)
 
   val firstHybridRelEs: Map[String, Any] = Map(
     "level" -> hybridRelLevel,
@@ -448,7 +448,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
       val result = testClient.execute {
         search(index).matchAllQuery().size(0)
       }.await
-      expected <= result.toOption.getOrElse(null).totalHits
+      expected <= result.toOption.orNull.totalHits
     }
   }
 
@@ -747,7 +747,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         uprn = hybridFirstUprn.toString,
         uprns = null
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -787,7 +787,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
       )
       val query = repository.makeQuery(args)
-      val result = Json.parse(SearchBodyBuilderFn(query).string())
+      val result = Json.parse(SearchBodyBuilderFn(query).string)
 
       // Then
       result shouldBe expected
@@ -809,7 +809,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
       )
       val query = repository.makeQuery(args)
-      val result = Json.parse(SearchBodyBuilderFn(query).string())
+      val result = Json.parse(SearchBodyBuilderFn(query).string)
 
       // Then
       result shouldBe expected
@@ -831,7 +831,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
       )
       val query = repository.makeQuery(args)
-      val result = Json.parse(SearchBodyBuilderFn(query).string())
+      val result = Json.parse(SearchBodyBuilderFn(query).string)
 
       // Then
       result shouldBe expected
@@ -854,7 +854,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1
       )
       val query = repository.makePartialSearch(args, fallback = true)
-      val result = Json.parse(SearchBodyBuilderFn(query).string())
+      val result = Json.parse(SearchBodyBuilderFn(query).string)
 
       // Then
       result shouldBe expected
@@ -894,7 +894,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         filters = "residential",
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -915,7 +915,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         filters = "residential",
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1003,7 +1003,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1049,7 +1049,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1155,7 +1155,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1183,7 +1183,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1211,7 +1211,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1239,7 +1239,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1267,7 +1267,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected
@@ -1289,7 +1289,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterNone,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string)
 
       // Then
       result shouldBe expected
@@ -1312,7 +1312,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterNone,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string)
 
       // Then
       result shouldBe expected
@@ -1334,7 +1334,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterNone,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string)
 
       // Then
       result shouldBe expected
@@ -1357,7 +1357,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterNone,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string)
 
       // Then
       result shouldBe expected
@@ -1381,7 +1381,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1
 
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string)
 
       // Then
       result shouldBe expected
@@ -1405,7 +1405,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterCode,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string)
 
       // Then
       result shouldBe expected
@@ -1427,7 +1427,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterPrefix,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string)
 
       // Then
       result shouldBe expected
@@ -1450,7 +1450,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterPrefix,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string)
 
       // Then
       result shouldBe expected
@@ -1472,7 +1472,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterCode,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string)
 
       // Then
       result shouldBe expected
@@ -1495,7 +1495,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterCode,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string)
 
       // Then
       result shouldBe expected
@@ -1517,7 +1517,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterPrefix,
         limit = 1,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = false)).string)
 
       // Then
       result shouldBe expected
@@ -1540,7 +1540,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         filters = partialFilterPrefix,
         limit = 1
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makePartialSearch(args, fallback = true)).string)
 
       // Then
       result shouldBe expected
@@ -1587,7 +1587,7 @@ class ElasticsearchRepositorySpec extends AnyWordSpec with should.Matchers with 
         limit = 1,
         verbose = false,
       )
-      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string())
+      val result = Json.parse(SearchBodyBuilderFn(repository.makeQuery(args)).string)
 
       // Then
       result shouldBe expected

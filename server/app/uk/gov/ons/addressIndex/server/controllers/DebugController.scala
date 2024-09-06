@@ -17,7 +17,7 @@ class DebugController @Inject()(val controllerComponents: ControllerComponents,
                                )(implicit ec: ExecutionContext) extends BaseController {
 
   implicit object DebugShow extends Show[SearchRequest] {
-    override def show(req: SearchRequest): String = SearchBodyBuilderFn(req).string()
+    override def show(req: SearchRequest): String = SearchBodyBuilderFn(req).string
   }
 
 

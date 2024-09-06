@@ -12,7 +12,7 @@ import spray.revolver.RevolverPlugin.autoImport.Revolver
 import com.typesafe.sbt.packager.docker._
 
 lazy val Versions = new {
-  val elastic4s = "7.17.1"
+  val elastic4s = "8.14.1"
   val scala = "2.13.13"
   val scapegoatVersion = "2.1.5"
   val akkaVersion = "2.8.5"
@@ -94,18 +94,18 @@ val commonDeps = Seq(
   "com.typesafe" % "config" % "1.4.3",
   "com.github.pureconfig" %% "pureconfig" % "0.17.6",
   "com.lihaoyi" %% "pprint" % "0.9.0",
-  "com.sksamuel.elastic4s" %% "elastic4s-core" % Versions.elastic4s excludeAll ExclusionRule(organization = "org.apache.logging.log4j"),
-  "com.sksamuel.elastic4s" %% "elastic4s-client-esjava" % Versions.elastic4s excludeAll ExclusionRule(organization = "org.apache.logging.log4j"),
+  "nl.gn0s1s" %% "elastic4s-core" % Versions.elastic4s excludeAll ExclusionRule(organization = "org.apache.logging.log4j"),
+  "nl.gn0s1s" %% "elastic4s-client-esjava" % Versions.elastic4s excludeAll ExclusionRule(organization = "org.apache.logging.log4j"),
   // testing
-  "com.sksamuel.elastic4s" %% "elastic4s-testkit" % Versions.elastic4s % "test",
+  "nl.gn0s1s" %% "elastic4s-testkit" % Versions.elastic4s % "test",
   "org.apache.logging.log4j" % "log4j-core" % "2.23.1" % Test,
   "org.apache.logging.log4j" % "log4j-api" % "2.23.1" % Test,
   "org.apache.commons" % "commons-lang3" % "3.14.0",
   "com.softwaremill.retry" %% "retry" % "0.3.6",
   "org.apache.httpcomponents" % "httpcore" % "4.4.16",
   "org.apache.httpcomponents" % "httpclient" % "4.5.14",
-  "org.elasticsearch.client" % "elasticsearch-rest-client" % "7.16.3",
-  "org.testcontainers" % "elasticsearch" % "1.16.3" % "test",
+  "org.elasticsearch.client" % "elasticsearch-rest-client" % "8.14.3",
+  "org.testcontainers" % "elasticsearch" % "1.20.0" % "test",
   guice
 )
 
