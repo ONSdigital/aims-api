@@ -568,43 +568,6 @@ GET     /addresses/partial    uk.gov.ons.addressIndex.server.controllers.Partial
 GET     /addresses/eq/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.EQUPRNController.uprnQueryEQ(uprn: String, addresstype : Option[String], epoch: Option[String])
 
 ###
-#  summary: Custom RH UPRN endpoint. Gets an address by UPRN.
-#  description: Returns a single address, identified by its UPRN in the custom EQ format.
-#  parameters:
-#    - name: uprn
-#      schema:
-#         type: integer
-#      description: Specifies the address UPRN.
-#    - name: addresstype
-#      schema:
-#         type: string
-#         default: paf
-#      description: Version of the address to return - paf, welshpaf, nag, welshnag, nisra
-#    - name: epoch
-#      schema:
-#         type: string
-#      description: Select a specific AddressBase Epoch to search.
-#  responses:
-#    200:
-#      description: Success. A json return of matched addresses.
-#      content:
-#        application/json:
-#          schema:
-#            $ref: "#/components/schemas/uk.gov.ons.addressIndex.model.server.response.rh.AddressByRHUprnResponseContainer"
-#    400:
-#      description: Bad request. Indicates an issue with the request. Further details are provided in the response.
-#    401:
-#      description: Unauthorised. The API key provided with the request is invalid.
-#    404:
-#      description: Not found. The requested UPRN was not found in the index.
-#    429:
-#      description: Server too busy. The Address Index API is experiencing exceptional load.
-#    500:
-#      description: Internal server error. Failed to process the request due to an internal error.
-###
-GET     /addresses/rh/uprn/:uprn    uk.gov.ons.addressIndex.server.controllers.RHUPRNController.uprnQueryRH(uprn: String, addresstype : Option[String], epoch: Option[String])
-
-###
 #  summary: Custom EQ endpoint that will pass the request to either the EQ partial endpoint or the postcode endpoint depending on what input string is submitted.
 #  description: Returns a list of addresses, from either a partial or postcode match on the input string
 #  parameters:
