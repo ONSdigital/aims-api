@@ -100,27 +100,7 @@
             Gets an address by UPRN (EQ version).
         </td>
     </tr>
-    <tr class="table--row">
-        <td class="table--cell">GET</td>
-        <td class="table--cell"><a href="rh/partial/readme.md">/addresses/rh/partial</a></td>
-        <td class="table--cell">
-            Search by partial address for type ahead (RH Version).
-        </td>
-    </tr>
-    <tr class="table--row">
-        <td class="table--cell">GET</td>
-        <td class="table--cell"><a href="rh/postcode/readme.md">/addresses/rh/postcode/{postcode}</a></td>
-        <td class="table--cell">
-            Search for an address by postcode (RH version).
-        </td>
-    </tr>
-    <tr class="table--row">
-        <td class="table--cell">GET</td>
-        <td class="table--cell"><a href="rh/uprn/readme.md">/addresses/rh/uprn/{uprn}</a></td>
-        <td class="table--cell">
-            Gets an address by UPRN (RH version).
-        </td>
-    </tr>
+
   </tbody>
 </table>
 
