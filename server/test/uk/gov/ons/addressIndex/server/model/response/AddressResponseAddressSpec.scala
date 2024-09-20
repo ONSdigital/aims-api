@@ -6,7 +6,6 @@ import org.scalatest.wordspec.AnyWordSpec
 import uk.gov.ons.addressIndex.model.db.index._
 import uk.gov.ons.addressIndex.model.server.response.address._
 import uk.gov.ons.addressIndex.model.server.response.eq.AddressByEQUprnResponse
-import uk.gov.ons.addressIndex.model.server.response.rh.AddressByRHUprnResponse
 import uk.gov.ons.addressIndex.server.utils.HighlightFuncs
 
 /**
@@ -960,72 +959,6 @@ class AddressResponseAddressSpec extends AnyWordSpec with should.Matchers {
     }
   }
 
-  "AddressByRHUprnResponse formatAddressLines" should {
-
-    val townName = "town-name"
-    val postcode = "AB1 2CD"
-
-    "return a Map for address line 1,2 and 3 when only address lines are provided" in {
-
-      // Given
-      val addressLines = List("address line 1", "address line 2", "address line 3")
-
-      // When
-      val result = AddressByRHUprnResponse.formatAddressLines(addressLines, "", townName, postcode)
-
-      // Then
-      result shouldBe Map("addressLine1" -> "address line 1", "addressLine2" -> "address line 2", "addressLine3" -> "address line 3")
-    }
-
-    "return a Map for address line 1,2 and 3 when only formatted address is provided" in {
-
-      // Given
-      val formattedAddress = "formatted line 1, formatted line 2, formatted line 3, town-name, AB1 2CD"
-
-      // When
-      val result = AddressByRHUprnResponse.formatAddressLines(Nil, formattedAddress, townName, postcode)
-
-      // Then
-      result shouldBe Map("addressLine1" -> "formatted line 1", "addressLine2" -> "formatted line 2", "addressLine3" -> "formatted line 3")
-    }
-
-    "return a Map for address line 1,2 and 3 with town name supplied as line 3 using address lines only" in {
-
-      // Given
-      val formattedAddressWithTownName = "formatted line 1, formatted line 2, town-name"
-
-      // When
-      val result = AddressByRHUprnResponse.formatAddressLines(Nil, formattedAddressWithTownName, townName, postcode)
-
-      // Then
-      result shouldBe Map("addressLine1" -> "formatted line 1", "addressLine2" -> "formatted line 2")
-    }
-
-    "return a Map for address line 1,2 and 3 with town name supplied as line 2 using formatted address only" in {
-
-      // Given
-      val addressLines = List("address line 1", "town-name", "address line 3")
-
-      // When
-      val result = AddressByEQUprnResponse.formatAddressLines(addressLines, "", townName, postcode)
-
-      // Then
-      result shouldBe Map("addressLine1" -> "address line 1", "addressLine2" -> "address line 3")
-    }
-
-    "return a Map for address line 1,2 and 3 with town name supplied as line 3 using formatted address only" in {
-
-      // Given
-      val addressLines = List("address line 1", "address line 2", "town-name")
-
-      // When
-      val result = AddressByRHUprnResponse.formatAddressLines(addressLines, "", townName, postcode)
-
-      // Then
-      result shouldBe Map("addressLine1" -> "address line 1", "addressLine2" -> "address line 2")
-    }
-  }
-
   "AddressByEQUprnResponse formatAddressLines" should {
 
     val townName = "town-name"
@@ -1093,7 +1026,6 @@ class AddressResponseAddressSpec extends AnyWordSpec with should.Matchers {
 
     "create AddressResponseAddressNonIDS collection and check AIR rating is 'A'" in {
       // Given
-      val hybrid = HybridAddress("", "", givenPaf.uprn, givenPaf.uprn, Some(Seq(givenRelative)), Some(Seq(givenCrossRef)), Some("postcodeIn"), Some("postcodeOut"), Seq(givenNag), Seq(givenPaf), 1, "classificationCode", "NA", "NA", "EW", "E", 0D, Seq())
       val expectedPaf = AddressResponsePaf.fromPafAddress(givenPaf)
       val expectedNag = AddressResponseNag.fromNagAddress(givenNag)
       val address1 = AddressResponseAddress(
