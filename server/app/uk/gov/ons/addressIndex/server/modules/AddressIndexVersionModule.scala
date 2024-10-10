@@ -41,6 +41,14 @@ class AddressIndexVersionModule @Inject()
       "108" -> "February 2024",
       "109" -> "April 2024",
       "110" -> "May 2024",
+      "111" -> "June 2024",
+      "112" -> "August 2024",
+      "113" -> "September 2024",
+      "114" -> "November 2024",
+      "115" -> "December 2024",
+      "116" -> "February 2025",
+      "117" -> "March 2025",
+      "118" -> "May 2025",
        "NA" -> "test index")
   }
 
