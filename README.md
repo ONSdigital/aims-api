@@ -8,7 +8,7 @@
 
 Address Index is a Play Framework (2.9.1) application which matches addresses. 
 
-The system works via large Elasticsearch (7.17.1) indices build primarily from AddressBase Premium data.
+The system works via large Elasticsearch (8.14.3) indices build primarily from AddressBase Premium data.
 
 The input can be a complete address (from any source), and the system uses advanced data science techniques to determine the most likely matching AddressBase entries with UPRNs (Unique Property Reference Numbers).
 
@@ -16,14 +16,14 @@ Addresses can be matched one at a time or in batches.
 
 Additional functions exist for postcode searching and partial address string matching for typeaheads.
 
-Plans to deploy the application as a service available to all members of the Public Sector Mapping Agreement have been put on hold for the duration of the Census test. The support team are awaiting a decision on the future of this.
+There are plans to deploy the application as a service available outside ONS but progress on this is slow.
 
 ### How do I get a sneek peak of the API? ###
 
 Docker images have been created which give a feel for the API. The Docker images include an Elasticsearch 7.17.1 cluster prebuilt with the required Address Index indices. The indices are a subset of AddressBase (the Exeter subset).
 Another Docker image contains a version of the API that will work with the Elasticsearch indices. We have recently added a third image to deploy the improved Python UI. The ```docker-compose.yml``` file also contains a Kibana and Cerebro service to view the cluster. To get started:
 
-1) Run ```docker-compose up``` on https://github.com/ONSdigital/address-index-api/blob/develop/docker-compose.yml
+1) Run ```docker-compose up``` on https://github.com/ONSdigital/aims-api/blob/main/docker-compose.yml
 
 2) The cluster status can be viewed with either Cerebro or Kibana:
 
@@ -37,8 +37,8 @@ Another Docker image contains a version of the API that will work with the Elast
         http://localhost:9001/
         
     Endpoints can be found in the Swagger definition /openapi/swagger.json. View as HTML with examples here: 
-    
-    https://github.com/ONSdigital/address-index-api/blob/develop/api-definitions
+
+   https://github.com/ONSdigital/aims-api/tree/main/api-definitions
     
     The ```ai-swagger.json``` can be copied into the Swagger Editor to view it: 
     
@@ -52,18 +52,18 @@ Another Docker image contains a version of the API that will work with the Elast
 
 1) Required Installations
 
-    * Java 17 or 21 
+    * Java 21 
     * sbt 1.9.9
     * Scala 2.13.13
-    * Elasticsearch 7.17.1
+    * Elasticsearch 8.14.3
     * An IDE such as IntelliJ is recommended
 
 2) Create Project from GitHub (IntelliJ shown as example)
 
     * File, New, Project From Version Control, GitHub
-    * Git Repository URL - select https://github.com/ONSdigital/address-index-api 
+    * Git Repository URL - select https://github.com/ONSdigital/aims-api.git
     * Parent Directory: any local drive, typically your IdeaProject directory
-    * Directory Name: address-index-api or address-index-data
+    * Directory Name: aims-api or aims-spark
     * Clone
 
     The references in the build.sbt are used to draw down additional components
@@ -97,13 +97,9 @@ sbt test
 
 will run them all, or you can select a subproject, or use testOnly feature to restrict what is run.
 
-### How do I run performance tests ###
-
-See [Running Performance Tests](server/src/it/Running%20Performance%20Tests.md)
-
 ### Related Repos ###
 
-[Address Index Data](https://github.com/ONSdigital/address-index-data) - Apache Spark job used to create the Elasticsearch index
+[Address Index Data](https://github.com/ONSdigital/aims-spark) - Apache Spark job used to create the Elasticsearch index
 
 [Address Index Developers](https://github.com/ONSdigital/address-index-developers) - Flask web site for API users
 
