@@ -70,26 +70,20 @@ Another Docker image contains a version of the API that will work with the Elast
 
 3) Run
 
-    * The project consists of an assembly of several subprojects - server, parsers, model and demo-ui
-    * The list of sub projects can be seen by running sbt projects from the root of the project.
+    * The project consists of an assembly of several subprojects - server, parsers and model - there used to be a demo-ui subproject but this has now been removed and there is a separate Python / Flask UI instead.
+    * The list of subprojects can be seen by running sbt projects from the root of the project.
     * The list contains the project IDs that must be used for all sbt commands which require a Project ID to be supplied, for example:
     * sbt "project address-index-server" run
 
-    * The application.conf of the demo-ui can point to the API on localhost or a deployed copy of the API
     * The application.conf of the server project points to an elastic search endpoint, this can be local or a server
 
-    To run or test the demo-ui and server together on your local machine:
-    
-    Open two command windows running sbt as shown above, one for the API and one for UI
-    
-    Use run 9001 to have the API on port 9001 and run 9000 to have the UI on 9000
-    (i.e. from the root of the address-index-api project run the following commands : 
+    To run the API on your local machine:
+       
+    Port 9000 is default but you can override this
+    i.e. from the root of the aims-api project run the following commands : 
         sbt "project address-index-server" "run 9001"
-        sbt "project address-index-demo-ui" "run 9000"
-    )
-    If the UI's application.conf is set to look at localhost:9001 for the API it will work.
 
-    Note that when working on the UI you can save changes and it will autodeploy. This doesn't work with the API becuase of the CRFSuite executable. You have to exit out of sbt and rerun.
+    Note that Play's autodeploy feature doesn't work with the API because of the CRFSuite executable. You have to exit out of sbt and rerun.
 
 ### How do I run unit tests ###
 
@@ -103,7 +97,7 @@ will run them all, or you can select a subproject, or use testOnly feature to re
 
 [Address Index Developers](https://github.com/ONSdigital/address-index-developers) - Flask web site for API users
 
-[Address Index UI](https://github.com/ONSdigital/address-index-ui) - New Flask UI to replace current demo-ui
+[Address Index UI](https://github.com/ONSdigital/address-index-ui) - New Flask UI which replaces old demo-ui
 
 ### What if I just want to use the API ###
 
