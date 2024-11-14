@@ -1,6 +1,8 @@
 ### How do use the Docker demo with my own ABP Index? ###
 
-First you have to create an Elasticsearch index with a subset of Local Authorities (selected via localCustodianCodes) using the instructions here
+First you have to create an Elasticsearch index with a subset of Local Authorities (selected via localCustodianCodes) using the instructions at
+
+https://github.com/ONSdigital/aims-spark/blob/main/README.md
 
 Then you need to run the alternative Docker Compose script in this directory
 
@@ -29,10 +31,17 @@ Now copy the snapshot to the data directory of the Elasticsearch cluster in Dock
 Now you can use Cerebro or Kibana to restore the index as shown below:
 
 First create a repository that points to snapshot directory inside Docker
-![Alt text](snapshot_cerebro.png "REST command to create repository")
+
+        PUT _snapshot/snapshots
+        {
+          "type": "fs",
+          "settings": { "location": "/usr/share/elasticsearch/data/snapshots", "compress": true }
+        }
+  <img src="snapshot_cerebro.png" width="400" title="REST command to create repository">
 
 Then restore the index from the snapshot
-![Alt text](docker_cerebro_restore.png "Using Cerebro to restore index")
+
+  <img src="docker_cerebro_restore.png" width="400" title="Using Cerebro to restore index">
 
 Then add some aliases to the index
 
@@ -45,9 +54,11 @@ Then add some aliases to the index
         index_skinny_hist_111
         index_skinny_nohist_111
 
-4) Now restart the API as shown below (screen shot is from Docker Desktop)
+  <img src="cerebro_alias.png" width="400" title="Setting an alias with Cerebro">
 
-![Alt text](docker_restart.png "Restarting API with Docker Desktop")
+4) Now restart the API as shown below (screenshot is from Docker Desktop)
+
+  <img src="docker_restart.png" width="400" title="Restarting API with Docker Desktop">
 
 The API will now run on
 
@@ -55,7 +66,7 @@ The API will now run on
 
 And only addresses inside your selected LAs will be found. In the example below, a search for ONS only finds the Fareham office
 
-![Alt text](docker_api_example.png "Calling the API with a browser")
+  <img src="docker_api_example.png" width="400" title="Calling the API with a browser">
 
 5) The UI should automatically detect that epoch 111 is available.
 

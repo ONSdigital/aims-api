@@ -48,6 +48,10 @@ Another Docker image contains a version of the API that will work with the Elast
 
         http://localhost:5000/
 
+### How do load my own index? ###
+
+This has its own README file in the [customdata](customdata/README.md) directory. 
+
 ### How do I get set up for development? ###
 
 1) Required Installations
