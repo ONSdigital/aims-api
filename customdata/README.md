@@ -37,11 +37,11 @@ First create a repository that points to snapshot directory inside Docker
           "type": "fs",
           "settings": { "location": "/usr/share/elasticsearch/data/snapshots", "compress": true }
         }
-  <img src="snapshot_cerebro.png" width="400" title="REST command to create repository">
+  <img src="snapshot_cerebro.png" width="450" title="REST command to create repository">
 
 Then restore the index from the snapshot
 
-  <img src="docker_cerebro_restore.png" width="400" title="Using Cerebro to restore index">
+  <img src="docker_cerebro_restore.png" width="450" title="Using Cerebro to restore index">
 
 Then add some aliases to the index
 
@@ -54,11 +54,11 @@ Then add some aliases to the index
         index_skinny_hist_111
         index_skinny_nohist_111
 
-  <img src="cerebro_alias.png" width="400" title="Setting an alias with Cerebro">
+  <img src="docker_cerebro_alias.png" width="450" title="Setting an alias with Cerebro">
 
 4) Now restart the API as shown below (screenshot is from Docker Desktop)
 
-  <img src="docker_restart.png" width="400" title="Restarting API with Docker Desktop">
+  <img src="docker_restart.png" width="450" title="Restarting API with Docker Desktop">
 
 The API will now run on
 
@@ -66,7 +66,7 @@ The API will now run on
 
 And only addresses inside your selected LAs will be found. In the example below, a search for ONS only finds the Fareham office
 
-  <img src="docker_api_example.png" width="400" title="Calling the API with a browser">
+  <img src="docker_api_example.png" width="450" title="Calling the API with a browser">
 
 5) The UI should automatically detect that epoch 111 is available.
 
