@@ -2,7 +2,7 @@
 
 First you have to create an Elasticsearch index with a subset of Local Authorities (selected via localCustodianCodes) using the instructions at
 
-https://github.com/ONSdigital/aims-spark/blob/main/README.md
+https://github.com/ONSdigital/aims-spark?tab=readme-ov-file#indices-for-specific-las
 
 Then you need to run the alternative Docker Compose script in this directory
 
