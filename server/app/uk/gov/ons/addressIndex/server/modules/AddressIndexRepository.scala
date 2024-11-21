@@ -212,7 +212,7 @@ class AddressIndexRepository @Inject()(conf: ConfigModule,
     }) + args.epochParam
 
     val hFields = if (args.highlight == "off") Seq() else
-        Seq(HighlightField("mixedPartial"))
+        Seq(HighlightField("mixedPartial",highlighterType = Some("plain")))
 
     val scriptText: String = "Math.round(_score/1.8)"
 
@@ -1064,8 +1064,8 @@ class AddressIndexRepository @Inject()(conf: ConfigModule,
   override def runMultiResultQuery(args: MultiResultArgs): Future[HybridAddressCollection] = {
     val query = makeQuery(args)
  // uncomment to see generated query
- //   val searchString = SearchBodyBuilderFn(query).string()
-  //  println(searchString)
+ //   val searchString = SearchBodyBuilderFn(query).string
+ //   println(searchString)
     args match {
       case partialArgs: PartialArgs =>
         val minimumFallback: Int = esConf.minimumFallback
