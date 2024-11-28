@@ -31,6 +31,7 @@ Another Docker image contains a version of the API that will work with the Elast
         and then http://es:9200
     
         Kibana: http://localhost:5601
+    (the compose file has kibana commented out, you can uncomment it if you want to use it)
     
 3) To run API calls open a browser or API testing app, Postman etc.
 

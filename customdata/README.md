@@ -14,6 +14,7 @@ Then you need to run the alternative Docker Compose script in this directory
         and then http://es:9200
     
         Kibana: http://localhost:5601
+    (the compose file has kibana commented out, you can uncomment it if you want to use it)
 
 You will see that there are no indices in the cluster. This means the API will not work.
 
