@@ -20,7 +20,7 @@ There are plans to deploy the application as a service available outside ONS but
 
 ### How do I get a sneek peak of the API? ###
 
-Docker images have been created which give a feel for the API. The Docker images include an Elasticsearch 7.17.1 cluster prebuilt with the required Address Index indices. The indices are a subset of AddressBase (the Exeter subset).
+Docker images have been created which give a feel for the API. The Docker images include an Elasticsearch 8.15.3 cluster prebuilt with the required Address Index indices. The indices are a subset of AddressBase (the Exeter subset).
 Another Docker image contains a version of the API that will work with the Elasticsearch indices. We have recently added a third image to deploy the improved Python UI. The ```docker-compose.yml``` file also contains a Kibana and Cerebro service to view the cluster. To get started:
 
 1) Run ```docker-compose up``` on https://github.com/ONSdigital/aims-api/blob/main/docker-compose.yml
@@ -98,7 +98,7 @@ will run them all, or you can select a subproject, or use testOnly feature to re
 
 ### Related Repos ###
 
-[Address Index Data](https://github.com/ONSdigital/aims-spark) - Apache Spark job used to create the Elasticsearch index
+[AIMS Spark](https://github.com/ONSdigital/aims-spark) - Apache Spark job used to create the Elasticsearch index
 
 [Address Index Developers](https://github.com/ONSdigital/address-index-developers) - Flask web site for API users
 
