@@ -10,7 +10,7 @@
 
 <h2>Getting data from ONS Address Index API</h2>
 
-<p>The Address Index API provides a number of end points to enable address look-up.</p>
+<p>The Address Index Matching Service API provides a number of end points to enable address look-up.</p>
 
 <p>Each end point and its basic purpose are available from the <a href="explore-the-api/readme.md">Explore the API readme</a>.</p>
  
