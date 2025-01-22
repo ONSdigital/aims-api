@@ -49,13 +49,8 @@ Another Docker image contains a version of the API that will work with the Elast
 
         http://localhost:5000/
 
-5) Use of Docker alternatives: The docker-compose script works with Colima without modification. For Podman, you will need to enable podman compose (can be done from the Podman desktop) and you may need to pull the images manually before running the docker compose up.
-         
-        podman pull europe-west2-docker.pkg.dev/ons-ci-aims/aims-api-demo/elasticsearch-aims-8.15.3
-        podman pull docker.io/lmenezes/cerebro
-        podman pull europe-west2-docker.pkg.dev/ons-ci-aims/aims-api-demo/address-index-server:1.3.2
-        podman pull europe-west2-docker.pkg.dev/ons-ci-aims/aims-api-demo/address-index-ui:1.3.28
-
+5) Use of Docker alternatives: The docker-compose script works with Colima without modification. For Podman, you will need to enable podman compose (can be done from the Podman Desktop) and if this points to docker-compose rather than podman-compose, docker-compose up will work without changes.
+       
 ### How do I load my own index? ###
 
 This has its own README file in the [customdata](customdata/README.md) directory. 

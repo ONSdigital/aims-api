@@ -36,6 +36,7 @@ services:
       - ONS_AI_API_ES_URI=es
       - ONS_AI_API_ES_PORT=9200
       - ONS_AI_API_MIN_PARTIAL_SIZE=2
+      - ONS_AI_API_VALID_EPOCHS=111
   address-index-ui:
     image: "europe-west2-docker.pkg.dev/ons-ci-aims/aims-api-demo/address-index-ui:1.3.28"
     ports:
