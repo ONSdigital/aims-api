@@ -29,6 +29,11 @@ Now copy the snapshot to the data directory of the Elasticsearch cluster in Dock
 
         docker cp . elasticsearch:/usr/share/elasticsearch/data/snapshots
 
+If using Podman on Windows the command is
+
+        podman machine ssh "podman cp /mnt/c/users/myuser/mysnap1/. elasticsearch:/usr/share/elasticsearch/data/snapshots" 
+(replace users/myuser/mysnap1 with the actual directory)
+
 Now you can use Cerebro or Kibana to restore the index as shown below:
 
 First create a repository that points to snapshot directory inside Docker.
