@@ -1,10 +1,6 @@
 ### How do I use the Docker Demo with my own ABP Index? ###
 
-First you have to create an Elasticsearch index with a subset of Local Authorities (selected via localCustodianCodes) using the instructions at
-
-https://github.com/ONSdigital/aims-spark?tab=readme-ov-file#indices-for-specific-las
-
-Then you need to run the alternative Docker Compose script in this directory
+You need to run the alternative Docker Compose script in this directory
 
 1) Run ```docker-compose up``` on https://github.com/ONSdigital/aims-api/blob/main/customdata/docker-compose.yml
 
@@ -18,7 +14,15 @@ Then you need to run the alternative Docker Compose script in this directory
 
 You will see that there are no indices in the cluster. This means the API will not work.
 
-3) Restore your index to the cluster.
+3) Create your Index
+
+You have to create an Elasticsearch index with a subset of Local Authorities (selected via localCustodianCodes) using the instructions at
+
+https://github.com/ONSdigital/aims-spark?tab=readme-ov-file#indices-for-specific-las
+
+The Spark job that creates the index can be run locally (at a push) in which case the index can be created directly on the cluster. Otherwise the index will need to be created separately and a snapshot taken. 
+
+4) Restore your index to the cluster (if necessary, see above).
 
 Create an empty directory on your local machine and copy your snapshot to it.
 The exact command depends on where the index is stored, the example below is for a GCS bucket:
@@ -62,7 +66,7 @@ Then add some aliases to the index:
 
   <img src="docker_cerebro_alias.png" width="500" title="Setting an alias with Cerebro">
 
-4) Now restart the API as shown below (screenshot is from Docker Desktop):
+5) Now restart the API as shown below (screenshot is from Docker Desktop):
 
   <img src="docker_restart.png" width="500" title="Restarting API with Docker Desktop">
 
@@ -74,7 +78,7 @@ And only addresses inside your selected LAs will be found. In the example below,
 
   <img src="docker_api_example.png" width="500" title="Calling the API with a browser">
 
-5) The UI should automatically detect that epoch 111 is available.
+6) The UI should automatically detect that epoch 111 is available.
 
         http://localhost:5000/
 

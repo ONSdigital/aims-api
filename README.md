@@ -8,7 +8,7 @@
 
 Address Index is a Play Framework (2.9.1) application which matches addresses. 
 
-The system works via large Elasticsearch (8.14.3) indices build primarily from AddressBase Premium data.
+The system works via large Elasticsearch (8.14.3) indices built primarily from AddressBase Premium data.
 
 The input can be a complete address (from any source), and the system uses advanced data science techniques to determine the most likely matching AddressBase entries with UPRNs (Unique Property Reference Numbers).
 
@@ -16,9 +16,9 @@ Addresses can be matched one at a time or in batches.
 
 Additional functions exist for postcode searching and partial address string matching for typeaheads.
 
-There are plans to deploy the application as a service available outside ONS but progress on this is slow.
+The possibility of making the service available to other public sector bodies is being considered. For now it is possible to deploy a test copy of the service on a local machine using Docker containers.
 
-### How do I get a sneek peak of the API? ###
+### How do I run the Dockerised API? ###
 
 Docker images have been created which give a feel for the API. The Docker images include an Elasticsearch 8.15.3 cluster prebuilt with the required Address Index indices. The indices are a subset of AddressBase (the Exeter subset).
 Another Docker image contains a version of the API that will work with the Elasticsearch indices. We have recently added a third image to deploy the improved Python UI. The ```docker-compose.yml``` file also contains a Kibana and Cerebro service to view the cluster. To get started:
