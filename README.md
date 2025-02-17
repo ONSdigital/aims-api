@@ -20,40 +20,7 @@ The possibility of making the service available to other public sector bodies is
 
 ### How do I run the Dockerised API? ###
 
-Docker images have been created which give a feel for the API. The Docker images include an Elasticsearch 8.15.3 cluster prebuilt with the required Address Index indices. The indices are a subset of AddressBase (the Exeter subset).
-Another Docker image contains a version of the API that will work with the Elasticsearch indices. We have recently added a third image to deploy the improved Python UI. The ```docker-compose.yml``` file also contains a Kibana and Cerebro service to view the cluster. To get started:
-
-1) Run ```docker-compose up``` on https://github.com/ONSdigital/aims-api/blob/main/docker-compose.yml
-
-2) The cluster status can be viewed with either Cerebro or Kibana:
-
-        Cerebro: http://localhost:1234
-        and then http://es:9200
-    
-        Kibana: http://localhost:5601
-    (the compose file has kibana commented out, you can uncomment it if you want to use it)
-    
-3) To run API calls open a browser or API testing app, Postman etc.
-
-        http://localhost:9001/
-        
-    Endpoints can be found in the Swagger definition /openapi/swagger.json. View as HTML with examples here: 
-
-   https://github.com/ONSdigital/aims-api/tree/main/api-definitions
-    
-    The ```ai-swagger.json``` can be copied into the Swagger Editor to view it: 
-    
-    https://editor.swagger.io/
-
-4) The UI points to the local API and is available on
-
-        http://localhost:5000/
-
-5) Use of Docker alternatives: The docker-compose script works with Colima without modification. For Podman, you will need to enable podman compose (can be done from the Podman Desktop) and if this points to docker-compose rather than podman-compose, docker-compose up will work without changes.
-       
-### How do I load my own index? ###
-
-This has its own README file in the [customdata](customdata/README.md) directory. 
+Instructions for this now live in a new public repo called [AIMS DIY](https://github.com/ONSdigital/aims-diy)  
 
 ### How do I get set up for development? ###
 
