@@ -97,7 +97,7 @@ class VersionModuleSpec extends AnyWordSpec with should.Matchers with SearchMatc
       // When
       val result = versionModule.epochList
       // allow epochs to be in any order
-      val success = (result.contains("33") && result.contains("34") && result.contains("105"))
+      val success = (result.contains("apples") && result.contains("microbiology") && result.contains("differential"))
 
       // Then
       success shouldBe true
@@ -106,7 +106,7 @@ class VersionModuleSpec extends AnyWordSpec with should.Matchers with SearchMatc
     "extract default epoch version from a correct alias->index" in {
       // Given
       val versionModule = new AddressIndexVersionModule(testConfig, elasticClientProvider)
-      val expected = "34"
+      val expected = "Chicken"
 
       // When
       val result = versionModule.dataVersion
