@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           # read local version
-          uiVersion=$(< version.txt)
+          apiVersion=$(< version.txt)
 
           # extract remote version from docker-compose
           diyApiVersion=$(grep -A1 'address-index-server:' diy/docker-compose.yml \
@@ -37,7 +37,7 @@ jobs:
 
 
           # Split into semver parts
-          IFS='.' read -r apiMajor apiMinor apiPatch <<< "$uiVersion"
+          IFS='.' read -r apiMajor apiMinor apiPatch <<< "$apiVersion"
           IFS='.' read -r diyMajor diyMinor diyPatch <<< "$diyApiVersion"
 
           # Difference calculations
@@ -104,7 +104,7 @@ jobs:
               status: 'completed',
               conclusion: 'failure',
               output: {
-                title: `Current API is @version ${uiVersion} which is behind AIMS-DIY Repo @version ${diyVersion}`,
+                title: `Current API is @version ${apiVersion} which is behind AIMS-DIY Repo @version ${diyVersion}`,
                 summary: 'Consider upgrading the AIMS-DIY repo with the latest API image.',
               },
             });
