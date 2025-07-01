@@ -1,0 +1,112 @@
+name: AIMS-DIY Version Check
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  compare-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout aims-api code
+        uses: actions/checkout@v4
+
+      - name: Checkout aims-diy repo
+        uses: actions/checkout@v4
+        with:
+          repository: ONSdigital/aims-diy
+          path: diy
+
+      - id: compare
+        name: Read versions and compare
+        shell: bash
+        run: |
+          # read local version
+          apiVersion=$(< version.txt)
+
+          # extract remote version from docker-compose
+          diyApiVersion=$(grep -A1 'address-index-server:' diy/docker-compose.yml \
+                   | grep image \
+                   | sed -E 's/.*:([^"]+)".*/\1/')
+
+
+          # Split into semver parts
+          IFS='.' read -r apiMajor apiMinor apiPatch <<< "$apiVersion"
+          IFS='.' read -r diyMajor diyMinor diyPatch <<< "$diyApiVersion"
+
+          # Difference calculations
+          maj_diff=$(( apiMajor - diyMajor ))
+          min_diff=$(( apiMinor - diyMinor ))
+          patch_diff=$(( apiPatch - diyPatch ))
+
+          echo "The API version is $apiVersion, the diy version of the API is $diyApiVersion. Consider upgrading the AIMS-DIY Repository with the latest API image."
+          echo "Version Difference Breakdown: Major diff: $maj_diff (max 1), Minor diff: $min_diff (max 1), Patch diff: $patch_diff (max 25)."
+
+          # Fail if ≥1 major version behind
+          if (( maj_diff >= 1 )); then
+            echo "::warning::You are $maj_diff major version(s) behind (local $apiVersion vs diy $diyApiVersion)."
+
+          # If same major but ≥1 minor behind
+          elif (( maj_diff == 0 && min_diff >= 1 )); then
+            echo "::warning::You are $min_diff minor version(s) behind (local $apiVersion vs diy $diyApiVersion)."
+
+          # If same major and minor but >25 patches behind
+          elif (( maj_diff == 0 && min_diff == 0 && patch_diff > 25 )); then
+            echo "::warning::You are $patch_diff patch version(s) behind (local $apiVersion vs diy $diyApiVersion)."
+          fi
+
+          # write a "behind" flag if ANY of our thresholds tripped
+          if (( maj_diff >= 1 )) || 
+             (( maj_diff == 0 && min_diff >= 1 )) || 
+             (( maj_diff == 0 && min_diff == 0 && patch_diff > 25 )); then
+            echo "behind=true" >> $GITHUB_OUTPUT
+          else
+            echo "behind=false" >> $GITHUB_OUTPUT
+          fi
+        
+          # Export outputs for the next step
+          behind=false
+          if (( maj_diff >= 1 )) || \
+             (( maj_diff == 0 && min_diff >= 1 )) || \
+             (( maj_diff == 0 && min_diff == 0 && patch_diff > 25 )); then
+            behind=true
+          fi
+
+          echo "behind=$behind"        >> $GITHUB_OUTPUT
+          echo "apiVersion=$apiVersion"  >> $GITHUB_OUTPUT
+          echo "diyVersion=$diyApiVersion" >> $GITHUB_OUTPUT
+
+
+      - name: Report as a check run
+        if: steps.compare.outputs.behind == 'true'
+        uses: actions/github-script@v7
+        continue-on-error: true
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const head_sha  = context.sha;
+            const apiVersion = '${{ steps.compare.outputs.apiVersion }}';
+            const diyVersion= '${{ steps.compare.outputs.diyVersion }}';
+
+            // Create a check-run that fails
+            await github.rest.checks.create({
+              owner,
+              repo,
+              name: 'AIMS-DIY Version',
+              head_sha,
+              status: 'completed',
+              conclusion: 'failure',
+              output: {
+                title: `Current API is @version ${apiVersion} which is behind AIMS-DIY Repo @version ${diyVersion}`,
+                summary: 'Consider upgrading the AIMS-DIY repo with the latest API image.',
+              },
+            });
+
+            throw new Error('Version-sync warning emitted; not blocking merge.');

@@ -9,3 +9,11 @@ logs
 RUNNING_PID
 .ensime
 .ensime_cache
+
+.vscode/
+.bloop/
+.metals/
+
+project/.bloop
+project/project
+project/metals.sbt
