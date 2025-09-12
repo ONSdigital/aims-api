@@ -6,6 +6,13 @@ import matchers._
 
 class TokensTest extends AnyFlatSpec with should.Matchers {
 
+  it should "insert hyphens into APPLEBY IN WESTMORLAND" in {
+    val input = "1 BROCKHAM COTTAGES CRACKENTHORPE APPLEBY IN WESTMORLAND CA16 6AF"
+    val expected = "1 BROCKHAM COTTAGES CRACKENTHORPE APPLEBY-IN-WESTMORLAND CA16 6AF"
+    val actual = Tokens.replaceSpacedSynonyms(input)
+    actual shouldBe expected
+  }
+
   it should "produce `Tokens` for the given string `31 exeter close` splitting on whitespace" in {
     val input = "31 exeter close"
     val expected = Seq("31", "EXETER", "CLOSE")
