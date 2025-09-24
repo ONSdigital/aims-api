@@ -59,8 +59,10 @@ object Tokens {
 
     val inputWithoutAccents = StringUtils.stripAccents(upperInput)
 
+    val inputWithoutAccentsSpacedSynonym = replaceSpacedSynonyms(inputWithoutAccents)
+
     // FWMT-1161 Deal with common OCR errors
-    val inputWithoutAccentsOCR = inputWithoutAccents.split(" ").map
+    val inputWithoutAccentsOCR = inputWithoutAccentsSpacedSynonym.split(" ").map
     { token =>
       {
         val ocrMatch = ocrlist.get(token)
@@ -110,6 +112,14 @@ object Tokens {
 
   def replaceSynonyms(tokens: Array[String]): Array[String] =
     tokens.map(token => synonym.getOrElse(token, token))
+
+  def replaceSpacedSynonyms(input: String): String = {
+    for ((key, value) <- spacedSynonym) {
+      if (input.contains(key)) return input.replace(key, value)
+    }
+    return input
+  }
+
 
   /**
     * Normalizes tokens after they were tokenized and labeled
@@ -371,6 +381,17 @@ object Tokens {
     * Contains key-value map of synonyms (replace key by value)
     */
   lazy val synonym: Map[String, String] = fileToList(s"synonym")
+    // The "-1" in split is to catch the trailing empty space on the lines like "ENGLAND,"
+    .map(_.split(",", -1))
+    .filter(_.nonEmpty)
+    .map(synonymReplacement => (synonymReplacement.head, synonymReplacement.last))
+    .toMap
+
+  /**
+   * Contains key-value map of synonyms where original has a space to be replaced
+   * to create a single token (replace key by value)
+   */
+  lazy val spacedSynonym: Map[String, String] = fileToList(s"spacedsynonym")
     // The "-1" in split is to catch the trailing empty space on the lines like "ENGLAND,"
     .map(_.split(",", -1))
     .filter(_.nonEmpty)
