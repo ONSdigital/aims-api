@@ -38,7 +38,7 @@
         <td class="table--cell">Include historical addresses</td>
         <td class="table--cell">
             Optional
-            <br>Default: True
+            <br>Default: False
         </td>
     </tr>    
     <tr class="table--row">

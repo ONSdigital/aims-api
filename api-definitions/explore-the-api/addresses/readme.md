@@ -83,7 +83,7 @@
             <td class="table--cell">Include historical addresses</td>
             <td class="table--cell">
                 Optional
-                <br>Default: True
+                <br>Default: False
             </td>
         </tr>
          <tr class="table--row">
@@ -220,8 +220,8 @@
 
    <pre><code>
 {
-  "apiVersion": "1.0.0-SNAPSHOT",
-  "dataVersion": "NA",
+  "apiVersion": "1.3.7",
+  "dataVersion": "119",
   "response": {
     "tokens": {
       "StreetName": "GATE REACH",
@@ -258,7 +258,7 @@
     "matchtype": "S",
     "recommendationCode": "A"
     "filter": "",
-    "historical": true,
+    "historical": false,
     "epoch": "",
     "rangekm": "",
     "latitude": "",
@@ -291,8 +291,8 @@
    <h2 class="saturn">Sample Output (Verbose)</h2>
    <pre><code>
   {
-    "apiVersion": "1.0.0-SNAPSHOT",
-    "dataVersion": "NA",
+    "apiVersion": "1.3.7",
+    "dataVersion": "119",
     "response": {
       "tokens": {
         "StreetName": "GATE REACH",
@@ -420,7 +420,7 @@
       "matchtype": "S",
       "recommendationCode": "A"
       "filter": "",
-      "historical": true,
+      "historical": false,
       "epoch": "",
       "rangekm": "",
       "latitude": "",
