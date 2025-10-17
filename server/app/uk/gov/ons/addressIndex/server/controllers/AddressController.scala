@@ -85,7 +85,7 @@ class AddressController @Inject()(val controllerComponents: ControllerComponents
     val filterString = classificationfilter.getOrElse("").replaceAll("\\s+", "")
     val endpointType = "address"
 
-    val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(true)
+    val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(false)
     val verb = verbose.flatMap(x => Try(x.toBoolean).toOption).getOrElse(false)
 
     val decodedInput = DecodeHelper.decodeUrl(input)

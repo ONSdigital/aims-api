@@ -53,7 +53,7 @@ class UPRNController @Inject()(val controllerComponents: ControllerComponents,
 
     val endpointType = "uprn"
 
-    val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(true)
+    val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(false)
     val verb = verbose.flatMap(x => Try(x.toBoolean).toOption).getOrElse(false)
 
     val epochVal = epoch.getOrElse("")

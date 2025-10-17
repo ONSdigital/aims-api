@@ -90,7 +90,7 @@ class BatchController @Inject()(val controllerComponents: ControllerComponents,
         res
 
       case _ =>
-        val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(true)
+        val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(false)
         val requestsData: LazyList[BulkAddressRequestData] = requestDataFromRequest(request)
         val configOverwrite: Option[QueryParamsConfig] = request.body.config
 

@@ -64,7 +64,7 @@ class DebugController @Inject()(val controllerComponents: ControllerComponents,
     val startDateVal = ""
     val endDateVal = ""
 
-    val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(true)
+    val hist = historical.flatMap(x => Try(x.toBoolean).toOption).getOrElse(false)
 
     val epochVal = epoch.getOrElse("")
 

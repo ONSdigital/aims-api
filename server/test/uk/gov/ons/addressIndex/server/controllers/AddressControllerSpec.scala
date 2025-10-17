@@ -497,7 +497,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByUprnResponse(
           address = Some(transformToNonIDS(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = false, pafdefault=false), "A")),
-          historical = true,
+          historical =  false,
           verbose = false,
           epoch = "",
           pafdefault = false
@@ -523,7 +523,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByUprnResponse(
           address = Some(transformToNonIDS(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = true, pafdefault = false), "A")),
-          historical = true,
+          historical =  false,
           verbose = true,
           epoch = "",
           pafdefault = false
@@ -549,7 +549,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByMultiUprnResponse(
           addresses = addressesToNonIDS(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = false, pafdefault = false)), "A"),
-          historical = true,
+          historical =  false,
           verbose = false,
           epoch = "",
           pafdefault = false
@@ -688,7 +688,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         response = AddressByRandomResponse(
           addresses = addressesToNonIDS(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddressSkinny, verbose = false, pafdefault = false)), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 1,
           verbose = false,
           epoch = "",
@@ -718,7 +718,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         response = AddressByRandomResponse(
           addresses = addressesToNonIDS(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = true, pafdefault=false)), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 1,
           verbose = true,
           epoch = "",
@@ -1168,7 +1168,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = addressesToNonIDS(HopperScoreHelper.getScoresForAddresses(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = false, pafdefault = false)), Map.empty, -1D, 12), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1207,7 +1207,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = addressesToNonIDS(HopperScoreHelper.getScoresForAddresses(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = true, pafdefault = false)), Map.empty, -1D, 12), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1246,7 +1246,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = addressesToNonIDS(HopperScoreHelper.getScoresForAddresses(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = false, pafdefault = false)), Map.empty, -1D, 6), "A"),
           filter = "commercial",
-          historical = true,
+          historical =  false,
           rangekm = "20",
           latitude = "50.7",
           longitude = "-3.5",
@@ -1285,7 +1285,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = addressesToNonIDS(HopperScoreHelper.getScoresForAddresses(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = false, pafdefault = false)), Map.empty, -1D, 12), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "50.705948",
           longitude = "-3.5091076",
@@ -1324,7 +1324,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = addressesToNonIDS(HopperScoreHelper.getScoresForAddresses(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = true, pafdefault = false)), Map.empty, -1D, 12), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "50.705948",
           longitude = "-3.5091076",
@@ -1364,7 +1364,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "RD02",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1405,7 +1405,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "RD02",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1447,7 +1447,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "BR12",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1488,7 +1488,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "RD*,RD02",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1530,7 +1530,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1604,7 +1604,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1677,7 +1677,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         AddressByRandomResponse(
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 1,
           verbose = false,
           epoch = "",
@@ -1708,7 +1708,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "commercial",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "50.7",
           longitude = "-3.5",
@@ -1749,7 +1749,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1823,7 +1823,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -1896,7 +1896,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         AddressByRandomResponse(
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 0,
           verbose = false,
           epoch = "",
@@ -2041,7 +2041,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2115,7 +2115,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2188,7 +2188,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         AddressByRandomResponse(
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 999999,
           verbose = false,
           epoch = "",
@@ -2218,7 +2218,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         AddressByRandomResponse(
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 1,
           verbose = false,
           epoch = "epoch",
@@ -2249,7 +2249,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "alongway",
           latitude = "",
           longitude = "",
@@ -2290,7 +2290,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "oopnorth",
           longitude = "0",
@@ -2331,7 +2331,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "50",
           longitude = "eastofthechipshop",
@@ -2372,7 +2372,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "66.6",
           longitude = "0",
@@ -2413,7 +2413,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "50",
           longitude = "2.8",
@@ -2454,7 +2454,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "44.4",
           longitude = "0",
@@ -2495,7 +2495,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "1",
           latitude = "50",
           longitude = "-8.8",
@@ -2536,7 +2536,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2741,7 +2741,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = addressesToNonIDS(HopperScoreHelper.getScoresForAddresses(Seq(AddressResponseAddress.fromHybridAddress(validHybridAddress, verbose = false, pafdefault = false)), Map.empty, -1D, scaleFactor), "A"),
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2768,7 +2768,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2796,7 +2796,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2824,7 +2824,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -2953,7 +2953,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           tokens = Map.empty,
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           rangekm = "",
           latitude = "",
           longitude = "",
@@ -3038,7 +3038,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         AddressByRandomResponse(
           addresses = Seq.empty,
           filter = "",
-          historical = true,
+          historical =  false,
           limit = 1,
           verbose = false,
           epoch = "",
@@ -3118,7 +3118,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByUprnResponse(
           address = None,
-          historical = true,
+          historical =  false,
           verbose = false,
           epoch = "",
           pafdefault = false
@@ -3149,7 +3149,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByUprnResponse(
           address = None,
-          historical = true,
+          historical =  false,
           verbose = false,
           epoch = "",
           pafdefault = false
@@ -3176,7 +3176,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByUprnResponse(
           address = None,
-          historical = true,
+          historical =  false,
           verbose = false,
           epoch = "",
           pafdefault = false
@@ -3213,7 +3213,7 @@ class AddressControllerSpec extends PlaySpec with Results {
         dataVersion = dataVersionExpected,
         response = AddressByUprnResponse(
           address = None,
-          historical = true,
+          historical =  false,
           verbose = false,
           epoch = "",
           pafdefault = false
@@ -3242,7 +3242,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       )
 
       // When
-      val result: BulkAddresses = Await.result(controller.queryBulkAddresses(requestsData, limitperaddress = 3, None,  historical = true, epoch = "", matchThreshold = 5F), Duration.Inf)
+      val result: BulkAddresses = Await.result(controller.queryBulkAddresses(requestsData, limitperaddress = 3, None,  historical =  false, epoch = "", matchThreshold = 5F), Duration.Inf)
 
       // Then
       result.successfulBulkAddresses.size mustBe 2
@@ -3266,7 +3266,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       )
 
       // When
-      val result = controller.iterateOverRequestsWithBackPressure(requestsData, 3, None, None,  historical = true, epoch = "", 5F)
+      val result = controller.iterateOverRequestsWithBackPressure(requestsData, 3, None, None,  historical =  false, epoch = "", 5F)
 
       // Then
       result.size mustBe requestsData.size
@@ -3283,7 +3283,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       )
 
       // When Then
-      an[Exception] should be thrownBy controller.iterateOverRequestsWithBackPressure(requestsData, miniBatchSize = 10, None, None,  historical = true, epoch = "", matchThreshold =5F)
+      an[Exception] should be thrownBy controller.iterateOverRequestsWithBackPressure(requestsData, miniBatchSize = 10, None, None,  historical =  false, epoch = "", matchThreshold =5F)
     }
 
     "return list of codelists" in {
