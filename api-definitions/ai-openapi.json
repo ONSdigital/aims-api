@@ -92,7 +92,7 @@
             "schema": {
               "type": "boolean",
               "nullable": true,
-              "default": true
+              "default": false
             },
             "description": "Include historical addresses"
           },
@@ -332,7 +332,7 @@
             "schema": {
               "type": "boolean",
               "nullable": true,
-              "default": true
+              "default": false
             },
             "description": "Include historical addresses"
           },
@@ -687,7 +687,7 @@
             "schema": {
               "type": "boolean",
               "nullable": true,
-              "default": true
+              "default": false
             },
             "description": "Include historical addresses"
           },
@@ -1874,7 +1874,7 @@
             "schema": {
               "type": "boolean",
               "nullable": true,
-              "default": true
+              "default": false
             },
             "description": "Include historical addresses"
           },
@@ -2116,7 +2116,7 @@
             "schema": {
               "type": "boolean",
               "nullable": true,
-              "default": true
+              "default": false
             },
             "description": "Include historical addresses"
           },
@@ -2206,7 +2206,7 @@
             "schema": {
               "type": "boolean",
               "nullable": true,
-              "default": true
+              "default": false
             },
             "description": "Include historical addresses"
           },

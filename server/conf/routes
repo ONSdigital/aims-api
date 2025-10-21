@@ -43,7 +43,7 @@ GET     /                   uk.gov.ons.addressIndex.server.controllers.general.A
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: matchthreshold
 #      schema:
@@ -167,7 +167,7 @@ GET     /addresses/ids          uk.gov.ons.addressIndex.server.controllers.IDSAd
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: matchthreshold
 #      schema:
@@ -372,7 +372,7 @@ GET     /logicalstatuses      uk.gov.ons.addressIndex.server.controllers.Codelis
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: verbose
 #      schema:
@@ -968,7 +968,7 @@ GET     /addresses/eq/bucket          uk.gov.ons.addressIndex.server.controllers
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: verbose
 #      schema:
@@ -1098,7 +1098,7 @@ GET     /epochs              uk.gov.ons.addressIndex.server.controllers.EpochOpt
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: matchthreshold
 #      schema:
@@ -1142,7 +1142,7 @@ POST    /bulk               uk.gov.ons.addressIndex.server.controllers.BatchCont
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: matchthreshold
 #      schema:
@@ -1213,7 +1213,7 @@ GET     /es                 uk.gov.ons.addressIndex.server.controllers.DebugCont
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: epoch
 #      schema:
@@ -1246,7 +1246,7 @@ GET     /query-debug        uk.gov.ons.addressIndex.server.controllers.DebugCont
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: matchthreshold
 #      schema:
@@ -1284,7 +1284,7 @@ POST    /bulk-debug          uk.gov.ons.addressIndex.server.controllers.BatchCon
 #    - name: historical
 #      schema:
 #         type: boolean
-#         default: true
+#         default: false
 #      description: Include historical addresses
 #    - name: verbose
 #      schema:

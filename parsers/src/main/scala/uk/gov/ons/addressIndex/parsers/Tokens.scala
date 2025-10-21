@@ -59,10 +59,10 @@ object Tokens {
 
     val inputWithoutAccents = StringUtils.stripAccents(upperInput)
 
-    val inputWithoutAccentsSpacedSynonym = replaceSpacedSynonyms(inputWithoutAccents)
+    //val inputWithoutAccentsSpacedSynonym = replaceSpacedSynonyms(inputWithoutAccents)
 
     // FWMT-1161 Deal with common OCR errors
-    val inputWithoutAccentsOCR = inputWithoutAccentsSpacedSynonym.split(" ").map
+    val inputWithoutAccentsOCR = inputWithoutAccents.split(" ").map
     { token =>
       {
         val ocrMatch = ocrlist.get(token)
@@ -85,7 +85,7 @@ object Tokens {
       .replace("\\", " ")
       .split(" ")
 
-    removeCounties(replaceSynonyms(tokens).filter(_.nonEmpty).mkString(" "))
+    replaceSpacedSynonyms(removeCounties(replaceSynonyms(tokens).filter(_.nonEmpty).mkString(" ")))
   }
 
   def removeCounties(input: String): String = {

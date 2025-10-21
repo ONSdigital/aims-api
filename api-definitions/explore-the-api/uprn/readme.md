@@ -22,7 +22,7 @@
             <td class="table--cell">Include historical addresses</td>
             <td class="table--cell">
                 Optional
-                <br>Default: True                
+                <br>Default: False               
             </td>
         </tr>
         <tr class="table--row">
@@ -97,8 +97,8 @@
 
 <pre><code>
 {
-  "apiVersion": "1.0.0-SNAPSHOT",
-  "dataVersion": "NA",
+  "apiVersion": "1.3.7",
+  "dataVersion": "119",
   "response": {
     "address": {
       "uprn": "10013049457",
@@ -125,7 +125,7 @@
       "confidenceScore": 100,
       "underlyingScore": 1
     },
-    "historical": true,
+    "historical": false,
     "epoch": "",
     "verbose": false
   },
