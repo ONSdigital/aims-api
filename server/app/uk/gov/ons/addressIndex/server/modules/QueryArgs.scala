@@ -10,11 +10,11 @@ import scala.util.Try
 
 case class DateRange(start: String = "", end: String = "")
 
-case class Region(range: Int, lat: Double, lon: Double)
+case class Region(range: String, lat: Double, lon: Double)
 
 object Region {
   def fromStrings(range: String, lat: String, lon: String): Option[Region] = {
-    Try(Region(range.toInt, lat.toDouble, lon.toDouble)).toOption
+    Try(Region(range, lat.toDouble, lon.toDouble)).toOption
   }
 }
 
