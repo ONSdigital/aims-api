@@ -69,19 +69,23 @@ jobs:
       - name: Check Dir
         run: |
           ls -la server/target/docker/stage/
+          ls -la server/target/docker/stage/1
+          ls -la server/target/docker/stage/2
+          ls -la server/target/docker/stage/4
+          ls -la server/target/docker/stage/opt
 
-      - name: Configure Docker
-        run: |
-          gcloud auth configure-docker ${{ env.AR_REPO_LOCATION }}-docker.pkg.dev
-
-      - name: Build Docker image
-        run: |
-          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" -f server/target/docker/stage/Dockerfile .
-          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" -f server/target/docker/stage/Dockerfile .
-
-      - name: Push Docker image
-        run: |
-          docker push "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}" --all-tags
+#      - name: Configure Docker
+#        run: |
+#          gcloud auth configure-docker ${{ env.AR_REPO_LOCATION }}-docker.pkg.dev
+#
+#      - name: Build Docker image
+#        run: |
+#          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" -f server/target/docker/stage/Dockerfile .
+#          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" -f server/target/docker/stage/Dockerfile .
+#
+#      - name: Push Docker image
+#        run: |
+#          docker push "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}" --all-tags
 
 #      - name: Run tests
 #        run: sbt test
