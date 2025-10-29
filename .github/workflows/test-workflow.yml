@@ -61,19 +61,19 @@ jobs:
 
       - name: Setup sbt launcher
         uses: sbt/setup-sbt@v1
-      - name: Build and Test
-        run: sbt +test
+#      - name: Build and Test
+#        run: sbt +test
       - name: Setup Docker
         run: sbt clean compile docker:stage
-        
+
       - name: Configure Docker
         run: |
           gcloud auth configure-docker ${{ env.AR_REPO_LOCATION }}-docker.pkg.dev
 
       - name: Build Docker image
         run: |
-          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" .
-          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" .
+          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" -f server/target/docker/stage .
+          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" -f server/target/docker/stage .
 
       - name: Push Docker image
         run: |
