@@ -65,6 +65,19 @@ jobs:
         run: sbt +test
       - name: Setup Docker
         run: sbt clean compile docker:stage
+        
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker ${{ env.AR_REPO_LOCATION }}-docker.pkg.dev
+
+      - name: Build Docker image
+        run: |
+          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" .
+          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" .
+
+      - name: Push Docker image
+        run: |
+          docker push "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}" --all-tags
 
 #      - name: Run tests
 #        run: sbt test
