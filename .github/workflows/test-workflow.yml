@@ -66,14 +66,19 @@ jobs:
       - name: Setup Docker
         run: sbt clean compile docker:stage
 
+      - name: Check Dir
+        run: |
+          ls -la
+          ls -la server/target/docker/stage/
+
       - name: Configure Docker
         run: |
           gcloud auth configure-docker ${{ env.AR_REPO_LOCATION }}-docker.pkg.dev
 
       - name: Build Docker image
         run: |
-          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" -f server/target/docker/stage .
-          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" -f server/target/docker/stage .
+          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:${{ env.VALUE }}" -f server/target/docker/stage/Dockerfile .
+          docker build -t "${{ env.AR_URL }}/${{ env.IMAGE_NAME }}:latest" -f server/target/docker/stage/Dockerfile .
 
       - name: Push Docker image
         run: |
