@@ -3335,7 +3335,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       val actual: JsValue = contentAsJson(result)
 
       // Then
-      actual.toString().substring(0, expectedCodelist.length) mustBe expectedCodelist
+      actual.toString().substring(1, expectedCodelist.length) mustBe expectedCodelist
     }
 
     "return list of logical statuses" in {
