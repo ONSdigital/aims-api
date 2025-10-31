@@ -184,7 +184,7 @@ class AddressControllerSpec extends PlaySpec with Results {
     ":[{\"code\":\"7666MT\",\"label\":\"OS MasterMap Topography Layer TOID\"}"
 
   val validCustodianList: String = "{\"custodians\"" +
-    ":[{\"custCode\":\"114\",\"custName\":\"BATH AND NORTH EAST SOMERSET\",\"laName\":\"Bath and North East Somerset UA\",\"regCode\":\"E12000009\",\"regName\":\"South West\",\"laCode\":\"E06000022\"}"
+    ":[{\"custCode\":\"28\",\"custName\":\"ISLE OF MAN\",\"laName\":\"Isle of Man\",\"regCode\":\"L99999999\",\"regName\":\"Channel Islands\",\"laCode\":\"M83000003\"}"
 
   val validLogicalStatusList: String = "{\"logicalStatuses\"" +
     ":[{\"code\":\"1\",\"label\":\"Approved\"}"
@@ -3335,7 +3335,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       val actual: JsValue = contentAsJson(result)
 
       // Then
-      actual.toString().substring(1, expectedCodelist.length) mustBe expectedCodelist
+      actual.toString().substring(0, expectedCodelist.length) mustBe expectedCodelist
     }
 
     "return list of logical statuses" in {
