@@ -132,8 +132,9 @@ object Tokens {
     val boroughTreatedTokens = postTokenizeTreatmentBorough(postcodeTreatedTokens)
     val buildingNumberTreatedTokens = postTokenizeTreatmentBuildingNumber(boroughTreatedTokens)
     val buildingNameTreatedTokens = postTokenizeTreatmentBuildingName(buildingNumberTreatedTokens)
+    val buildingNameSuffixTreatedTokens = postTokenizeTreatmentBuildingNameSuffix(buildingNameTreatedTokens)
 
-    buildingNameTreatedTokens
+    buildingNameSuffixTreatedTokens
   }
 
   /**
@@ -260,6 +261,29 @@ object Tokens {
     tokens ++ newTokens
   }
 
+  /**
+   * Extra parsing of buildingname to remove spaces before the suffix, if appropriate
+   *
+   * @param tokens tokens grouped by label
+   * @return map with tokens modified to remove space before suffix in buildingname
+   */
+  def postTokenizeTreatmentBuildingNameSuffix(tokens: Map[String, String]): Map[String, String] = {
+
+    val buildingName = tokens.getOrElse(Tokens.buildingName, "")
+    val paoStartNumber = tokens.getOrElse(Tokens.paoStartNumber, "")
+    val paoStartSuffix = tokens.getOrElse(Tokens.paoStartSuffix, "")
+
+    val newBuildingName = if (paoStartNumber.nonEmpty && paoStartSuffix.nonEmpty &&
+      buildingName == s"$paoStartNumber $paoStartSuffix") {
+      s"$paoStartNumber$paoStartSuffix"
+    } else {
+      buildingName
+    }
+
+    System.out.println(s"Building name after suffix treatment: $newBuildingName")
+
+    tokens + (Tokens.buildingName -> newBuildingName)
+  }
   /**
     * Similar to a table (present/not present) for three values: BuildingNumber, BuildingName, SubBuildingName,
     * analyses every possible permutation

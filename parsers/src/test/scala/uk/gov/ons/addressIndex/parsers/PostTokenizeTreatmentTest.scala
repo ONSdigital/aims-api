@@ -105,6 +105,25 @@ class PostTokenizeTreatmentTest extends AnyFlatSpec with should.Matchers {
     actual shouldBe expected
   }
 
+  it should "transform buildingNumber and buildingName into paoStartNumber and paoStartSuffix with space removed from name" in {
+    // Given
+    val input = Map(
+      Tokens.buildingName -> "65 B",
+    )
+
+    val expected = Map(
+      Tokens.buildingName -> "65B",
+      Tokens.paoStartNumber -> "65",
+      Tokens.paoStartSuffix -> "B",
+    )
+
+    // When
+    val actual = Tokens.postTokenize(input)
+
+    // Then
+    actual shouldBe expected
+  }
+
   it should "transform buildingName into paoStartNumber and paoEndSuffix" in {
     // Given
     val input = Map(
