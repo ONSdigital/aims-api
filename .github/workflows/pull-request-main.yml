@@ -3,32 +3,17 @@ name: Scala CI with SBT
 on:
   pull_request:
     branches: [ 'main' ]
-#env:
-#  IMAGE_NAME: 'address-index-server'
-#  PROJECT_ID: 'ons-ci-aims'
-#  AR_REPO_LOCATION: 'europe-west2'
-#  AR_URL: 'europe-west2-docker.pkg.dev/ons-ci-aims/aims-api-repository'
-#  WORKLOAD_IDENTITY_PROVIDER: 'projects/709138365636/locations/global/workloadIdentityPools/github-actions-aims-pool/providers/aims-api-provider'
 permissions:
   contents: read
-#  id-token: write
 jobs:
   build:
     permissions:
       contents: read
-#      id-token: write
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5.0.0
-
-#      - name: Google Auth
-#        id: auth
-#        uses: 'google-github-actions/auth@v3'
-#        with:
-#          project_id: ${{ env.PROJECT_ID }}
-#          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v5.0.0
