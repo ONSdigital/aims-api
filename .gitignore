@@ -17,3 +17,6 @@ RUNNING_PID
 project/.bloop
 project/project
 project/metals.sbt
+
+### Ignore generated credentials from google-github-actions/auth ###
+gha-creds-*.json
