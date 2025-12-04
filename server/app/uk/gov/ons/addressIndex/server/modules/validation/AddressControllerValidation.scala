@@ -26,7 +26,7 @@ class AddressControllerValidation @Inject()(implicit conf: ConfigModule, version
     BadRequestTemplate(queryValues, EpochNotAvailableErrorCustom)
   }
 
-  // get the defaults and maxima for the paging parameters from the config
+  // check the lat and lon are numeric and within the bounding box of UK and Channel Islands (slightly extended)
   def validateLocation(lat: Option[String], lon: Option[String], rangeKm: Option[String], queryValues: QueryValues, requestValues: RequestValues): Option[Future[Result]] = {
     (rangeKm, Try(lat.get.toDouble), Try(lon.get.toDouble)) match {
       case (None, _, _) => None
@@ -39,19 +39,19 @@ class AddressControllerValidation @Inject()(implicit conf: ConfigModule, version
         logger.systemLog(ip=requestValues.ip,url=requestValues.url,endpoint=requestValues.endpoint,networkid=requestValues.networkid,
           responsecode = "400",badRequestMessage = LongitudeNotNumericAddressResponseError.message)
         Some(futureJsonBadRequest(LongitudeNotNumeric(queryValues)))
-      case (_, Success(latD), _) if latD > 60.9 =>
+      case (_, Success(latD), _) if latD > 62 =>
         logger.systemLog(ip=requestValues.ip,url=requestValues.url,endpoint=requestValues.endpoint,networkid=requestValues.networkid,
           responsecode = "400",badRequestMessage = LatitudeTooFarNorthAddressResponseError.message)
         Some(futureJsonBadRequest(LatitudeTooFarNorth(queryValues)))
-      case (_, Success(latD), _) if latD < 49.8 =>
+      case (_, Success(latD), _) if latD < 48 =>
         logger.systemLog(ip=requestValues.ip,url=requestValues.url,endpoint=requestValues.endpoint,networkid=requestValues.networkid,
           responsecode = "400",badRequestMessage = LatitudeTooFarSouthAddressResponseError.message)
         Some(futureJsonBadRequest(LatitudeTooFarSouth(queryValues)))
-      case (_, _, Success(lonD)) if lonD > 1.8 =>
+      case (_, _, Success(lonD)) if lonD > 3 =>
         logger.systemLog(ip=requestValues.ip,url=requestValues.url,endpoint=requestValues.endpoint,networkid=requestValues.networkid,
           responsecode = "400",badRequestMessage = LongitudeTooFarEastAddressResponseError.message)
         Some(futureJsonBadRequest(LongitudeTooFarEast(queryValues)))
-      case (_, _, Success(lonD)) if lonD < -8.6 =>
+      case (_, _, Success(lonD)) if lonD < -10 =>
         logger.systemLog(ip=requestValues.ip,url=requestValues.url,endpoint=requestValues.endpoint,networkid=requestValues.networkid,
           responsecode = "400",badRequestMessage = LongitudeTooFarWestAddressResponseError.message)
         Some(futureJsonBadRequest(LongitudeTooFarWest(queryValues)))
