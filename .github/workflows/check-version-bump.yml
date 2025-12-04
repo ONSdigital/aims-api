@@ -1,0 +1,34 @@
+name: Enforce Version Bump
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0 # Ensures we have the full history for diff
+
+      - name: Get changed files
+        id: changes
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "changed<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Print changed files
+        run: |
+          echo "Changed files: ${{ steps.changes.outputs.changed }}"
+
+      - name: Check if version.txt was modified
+        run: |
+          if ! echo "${{ steps.changes.outputs.changed }}" | grep -q "version.txt"; then
+            echo "Error: version.txt was not modified in this PR. Please bump the version number."
+            exit 1
+          fi
