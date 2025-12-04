@@ -2416,7 +2416,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           historical =  false,
           rangekm = "1",
           latitude = "50",
-          longitude = "2.8",
+          longitude = "3.8",
           limit = 1,
           offset = 1,
           total = 0,
@@ -2435,7 +2435,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       ))
 
       // When
-      val result = controller.addressQuery("some query", Some("1"), Some("1"), None, Some("1"), Some("50"), Some("2.8")).apply(FakeRequest())
+      val result = controller.addressQuery("some query", Some("1"), Some("1"), None, Some("1"), Some("50"), Some("3.8")).apply(FakeRequest())
       val actual: JsValue = contentAsJson(result)
 
       // Then
@@ -2498,7 +2498,7 @@ class AddressControllerSpec extends PlaySpec with Results {
           historical =  false,
           rangekm = "1",
           latitude = "50",
-          longitude = "-8.8",
+          longitude = "-11.8",
           limit = 1,
           offset = 1,
           total = 0,
@@ -2517,7 +2517,7 @@ class AddressControllerSpec extends PlaySpec with Results {
       ))
 
       // When
-      val result = controller.addressQuery("some query", Some("1"), Some("1"), None, Some("1"), Some("50"), Some("-8.8")).apply(FakeRequest())
+      val result = controller.addressQuery("some query", Some("1"), Some("1"), None, Some("1"), Some("50"), Some("-11.8")).apply(FakeRequest())
       val actual: JsValue = contentAsJson(result)
 
       // Then
