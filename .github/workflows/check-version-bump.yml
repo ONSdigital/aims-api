@@ -2,6 +2,8 @@ name: Enforce Version Bump
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+permissions:
+  contents: read
 jobs:
   detect-changes:
     runs-on: ubuntu-latest
