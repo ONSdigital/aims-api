@@ -12,13 +12,11 @@ env:
 permissions:
   contents: read
   id-token: write
+  actions: read
+  security-events: write
 jobs:
   build:
-    permissions:
-      contents: read
-      id-token: write
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5.0.0
