@@ -10,10 +10,8 @@ env:
   AR_URL: 'europe-west2-docker.pkg.dev/ons-ci-aims/aims-api-repository'
   WORKLOAD_IDENTITY_PROVIDER: 'projects/709138365636/locations/global/workloadIdentityPools/github-actions-aims-pool/providers/aims-api-provider'
 permissions:
-  contents: read
+  contents: write
   id-token: write
-  actions: read
-  security-events: write
 jobs:
   build:
     runs-on: ubuntu-latest
