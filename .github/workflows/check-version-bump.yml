@@ -26,9 +26,9 @@ jobs:
         run: |
           echo "Changed files: ${{ steps.changes.outputs.changed }}"
 
-      - name: Check if version.txt was modified
+      - name: Check if version.txt and version.sbt were modified
         run: |
-          if ! echo "${{ steps.changes.outputs.changed }}" | grep -q "version.txt"; then
+          if ! echo "${{ steps.changes.outputs.changed }}" | grep -q -e "version.txt" -e "server/version.sbt"; then
             echo "Error: version.txt was not modified in this PR. Please bump the version number."
             exit 1
           fi
