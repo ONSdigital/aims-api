@@ -1,4 +1,4 @@
-name: Scala CI with SBT and Docker
+name: Create a test image for AP
 
 on:
   workflow_dispatch:
