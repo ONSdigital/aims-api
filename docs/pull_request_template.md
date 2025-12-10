@@ -14,4 +14,4 @@ List the major changes made in this pull request.
 
 - [ ] All existing and any new unit tests pass in your IDE
 
-- [ ] The version in `version.txt` has been updated [Help on Semantic Versioning](https://semver.org/)
+- [ ] The version in `version.txt` and `server/version.sbt` has been updated [Help on Semantic Versioning](https://semver.org/)
