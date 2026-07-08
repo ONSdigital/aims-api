@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Ensures we have the full history for diff
 
